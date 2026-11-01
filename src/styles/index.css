@@ -101,5 +101,5 @@ body {
 @keyframes twinkle { 0%,100% { opacity: .45;} 50% { opacity: .8;} }
 
 @media (prefers-reduced-motion: reduce) {
-  .glow, .node, .stars, .star, .nebula, .galaxy, .magic, .fog, .motes { animation: none !important; }
+  .glow, .node, .stars, .star, .cloud, .runner, .sprite, .shooting-star { animation: none !important; }
 }

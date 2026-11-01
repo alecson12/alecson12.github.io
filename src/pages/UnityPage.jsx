@@ -1,35 +1,64 @@
 import PageShell from '../components/PageShell'
 import Photo from '../components/Photo'
 import PortfolioButton from '../components/PortfolioButton'
-import BgText from '../components/BgText'
 import Reveal from '../components/Reveal'
 import { PAGES } from '../content/pages'
 
-/** Glowing magic circle: concentric rings with tick marks and a hexagram. */
-function MagicCircle({ className = '' }) {
-  const ticks = Array.from({ length: 48 }, (_, i) => i * 7.5)
+/* ------------------------------------------------------------------ */
+/*  Pixel sprites: a tiny party running across the meadow.             */
+/*  Each sprite is a 12x16 grid; letters map to colours per character. */
+/* ------------------------------------------------------------------ */
+const HERO = [
+  '....HHHH....',
+  '...HHHHHH...',
+  '...HSSSSH...',
+  '...HSESEH...',
+  '...HSSSSH...',
+  '....SSSS....',
+  '..CCCCCCCC..',
+  '.CCCCCCCCCC.',
+  'SCCCCCCCCCCS',
+  'SCCCCCCCCCCS',
+  '..CCCCCCCC..',
+  '..CC....CC..',
+  '..PP....PP..',
+  '..PP....PP..',
+  '.BBB....BBB.',
+  '.BBB....BBB.',
+]
+const PARTY = [
+  { pal: { H: '#8a5a2b', S: '#f3c89d', E: '#222', C: '#2d3a6b', P: '#1b1b2f', B: '#3a2a1a' }, delay: 0, scale: 6 },
+  { pal: { H: '#d9d9e6', S: '#f3c89d', E: '#222', C: '#4a4a5a', P: '#2b2b3b', B: '#3a2a1a' }, delay: -1.1, scale: 6 },
+  { pal: { H: '#9cc9ff', S: '#f3c89d', E: '#222', C: '#7aa7ff', P: '#2b4a8b', B: '#3a2a1a' }, delay: -2.2, scale: 6 },
+  { pal: { H: '#e0a040', S: '#f3c89d', E: '#222', C: '#c62828', P: '#5a1a1a', B: '#3a2a1a' }, delay: -3.3, scale: 6 },
+]
+
+function Sprite({ pal, scale }) {
   return (
-    <svg viewBox="0 0 400 400" className={className} aria-hidden fill="none" stroke="currentColor">
-      <circle cx="200" cy="200" r="190" strokeWidth="1" opacity=".5" />
-      <circle cx="200" cy="200" r="170" strokeWidth=".6" opacity=".35" strokeDasharray="2 6" />
-      <circle cx="200" cy="200" r="130" strokeWidth="1.2" opacity=".6" />
-      <circle cx="200" cy="200" r="60" strokeWidth=".8" opacity=".5" />
-      {ticks.map((a) => (
-        <line key={a} x1="200" y1="14" x2="200" y2={a % 45 === 0 ? 30 : 22} strokeWidth="1" opacity=".6" transform={`rotate(${a} 200 200)`} />
-      ))}
-      <polygon points="200,70 312,265 88,265" strokeWidth="1" opacity=".5" />
-      <polygon points="200,330 88,135 312,135" strokeWidth="1" opacity=".5" />
-    </svg>
+    <div className="sprite" style={{ display: 'grid', gridTemplateColumns: `repeat(12, ${scale}px)` }}>
+      {HERO.flatMap((row, y) =>
+        row.split('').map((ch, x) => (
+          <div key={`${x}-${y}`} style={{ width: scale, height: scale, background: pal[ch] || 'transparent' }} />
+        )),
+      )}
+    </div>
   )
 }
 
-/** Silhouette of ruined arches and spires along the horizon. */
-function Ruins({ className = '' }) {
+/** Far mountains and a castle on a hill, as flat silhouettes. */
+function Mountains({ className = '' }) {
   return (
-    <svg viewBox="0 0 1440 320" className={className} aria-hidden preserveAspectRatio="none">
+    <svg viewBox="0 0 1440 300" className={className} aria-hidden preserveAspectRatio="none">
+      <path fill="currentColor" d="M0 300V190l90-70 70 40 110-110 120 90 90-60 100 70 60-40 80 50 40-20 60 30 120-120 110 100 70-40 90 60 50-30 80 40V300z" />
+    </svg>
+  )
+}
+function Castle({ className = '' }) {
+  return (
+    <svg viewBox="0 0 200 160" className={className} aria-hidden>
       <path
         fill="currentColor"
-        d="M0 320V220h40v-60l20-30 20 30v60h50V150h30v-40l15-25 15 25v40h30v70h60V130h20V90l25-50 25 50v40h20v90h50v-50h30v-60l20-40 20 40v60h30v50h70V120l40-70 40 70v100h60V160h30v-30l20-40 20 40v30h30v60h60V110h25V60l30-50 30 50v50h25v110h50v-40h30v-70l20-30 20 30v70h30v40h60V140h25V95l20-35 20 35v45h25v80h70v-60h30V110l15-25 15 25v50h30v60h50v-40h40v110z"
+        d="M20 160V100h12V84l6-10 6 10v16h14V60h10V40l8-20 8 20v20h10v40h14V70h8V50l10-25 10 25v20h8v40h14V88h12v-8l6-10 6 10v8h12v72z"
       />
     </svg>
   )
@@ -37,9 +66,10 @@ function Ruins({ className = '' }) {
 
 /**
  * PAGE 3 — Unity Developer
- * Layout: title + button LEFT, photo CENTER inside a magic circle, lore panel RIGHT.
- * World: premium fantasy RPG title screen. Twilight sky, ruins, fog,
- *        floating motes, gold + violet + emerald light, serif type.
+ * Layout: title + button LEFT, photo CENTER on the meadow, lore panel RIGHT.
+ * World: bright HD-2D JRPG overworld. Blue sky, soft clouds, far mountains
+ *        and a castle, rolling green meadow, blurred foreground flowers,
+ *        and a small pixel party running across the hill.
  * Theme styles: .theme-unity in styles/themes.css
  * Content: src/content/pages.js → PAGES.unity
  */
@@ -47,53 +77,67 @@ export default function UnityPage({ direction, go }) {
   const c = PAGES.unity
   return (
     <PageShell id="unity" index={3} direction={direction} go={go} theme="theme-unity">
-      {/* ---- sky, light, ruins, fog ---- */}
+      {/* ---- sky ---- */}
       <div aria-hidden className="sky absolute inset-0" />
-      <div aria-hidden className="stars stars-far absolute inset-0 opacity-60" />
-      <div aria-hidden className="sunbeam" />
-      <Ruins className="ruins ruins-far absolute inset-x-0 bottom-[14vh] h-[34vh] w-full" />
-      <Ruins className="ruins ruins-near absolute inset-x-[-10%] bottom-0 h-[30vh] w-[120%]" />
-      <div aria-hidden className="fog fog-1" />
-      <div aria-hidden className="fog fog-2" />
-      <div aria-hidden className="motes absolute inset-0" />
-      <div aria-hidden className="motes motes-2 absolute inset-0" />
+      <div aria-hidden className="sun" />
+      <div aria-hidden className="cloud cloud-1" />
+      <div aria-hidden className="cloud cloud-2" />
+      <div aria-hidden className="cloud cloud-3" />
 
-      <BgText className="left-1/2 top-[5vh] -translate-x-1/2 text-center leading-[0.9]">
-        WORLDS
-      </BgText>
+      {/* ---- distance ---- */}
+      <Mountains className="mountains mountains-far absolute inset-x-[-5%] bottom-[38vh] h-[30vh] w-[110%]" />
+      <Mountains className="mountains mountains-near absolute inset-x-[-10%] bottom-[34vh] h-[26vh] w-[120%]" />
+      <Castle className="castle absolute bottom-[38vh] left-[54%] h-[16vh] w-auto" />
+      <div aria-hidden className="haze absolute inset-x-0 bottom-[30vh] h-[20vh]" />
 
-      {/* ---- magic circle + photo ---- */}
-      <MagicCircle className="magic absolute bottom-[4vh] left-1/2 h-[80vw] w-[80vw] -translate-x-1/2 md:bottom-[-10vh] md:h-[62vh] md:w-[62vh]" />
-      <div aria-hidden className="pedestal-glow absolute bottom-0 left-1/2 -translate-x-1/2" />
+      {/* ---- meadow ---- */}
+      <div aria-hidden className="hill hill-back" />
+      <div aria-hidden className="hill hill-front" />
+      <div aria-hidden className="grass-blades" />
+
+      {/* ---- pixel party running on the hill ---- */}
+      <div aria-hidden className="party absolute bottom-[26vh] left-0 hidden md:block">
+        {PARTY.map((p, i) => (
+          <div key={i} className="runner" style={{ animationDelay: `${p.delay}s` }}>
+            <Sprite pal={p.pal} scale={p.scale} />
+          </div>
+        ))}
+      </div>
+
+      {/* ---- foreground flowers (blurred, depth of field) ---- */}
+      <div aria-hidden className="flowers absolute inset-x-0 bottom-0 h-[26vh]" />
+
+      {/* ---- photo ---- */}
+      <div aria-hidden className="photo-ground absolute bottom-0 left-1/2 -translate-x-1/2" />
       <Photo
         src={c.photo}
         alt={c.photoAlt}
-        className="absolute bottom-0 left-1/2 z-10 h-[50vh] w-[90vw] -translate-x-1/2 md:h-[84vh] md:w-[34vw]"
+        className="absolute bottom-0 left-1/2 z-10 h-[50vh] w-[90vw] -translate-x-1/2 md:h-[82vh] md:w-[34vw]"
       />
 
-      {/* ---- left column ---- */}
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-start px-6 pb-24 md:inset-x-auto md:left-[7vw] md:top-1/2 md:w-[27vw] md:-translate-y-1/2 md:pb-0">
+      {/* ---- left column: JRPG window ---- */}
+      <div className="window absolute inset-x-4 bottom-20 z-10 flex flex-col items-start md:inset-x-auto md:left-[6vw] md:top-1/2 md:w-[28vw] md:-translate-y-1/2">
         <Reveal i={0} as="p" className="eyebrow">
           {c.eyebrow}
         </Reveal>
-        <Reveal i={1} as="h1" className="title mt-4">
+        <Reveal i={1} as="h1" className="title mt-3">
           {c.title}
         </Reveal>
-        <Reveal i={2} className="ornament mt-5" />
-        <Reveal i={2} as="p" className="description mt-5 max-w-sm md:hidden">
+        <Reveal i={2} className="ornament mt-4" />
+        <Reveal i={2} as="p" className="description mt-4 md:hidden">
           {c.description}
         </Reveal>
-        <Reveal i={3} className="mt-8">
+        <Reveal i={3} className="mt-6">
           <PortfolioButton href={c.portfolioLink} label={c.buttonLabel} />
         </Reveal>
       </div>
 
-      {/* ---- right column (desktop) ---- */}
-      <Reveal i={2} className="lore absolute right-[7vw] top-1/2 z-10 hidden w-[25vw] -translate-y-1/2 flex-col gap-4 md:flex">
+      {/* ---- right column: lore window (desktop) ---- */}
+      <Reveal i={2} className="window lore absolute right-[6vw] top-1/2 z-10 hidden w-[26vw] -translate-y-1/2 flex-col gap-3 md:flex">
         <p className="lore-head">Chronicle</p>
         <p className="description">{c.description}</p>
         <p className="lore-head mt-2">Arcana &amp; Tools</p>
-        <p className="description opacity-85">{c.secondaryText}</p>
+        <p className="description">{c.secondaryText}</p>
       </Reveal>
 
       <Reveal i={4} as="p" className="meta absolute bottom-7 right-8 z-10 hidden md:block">

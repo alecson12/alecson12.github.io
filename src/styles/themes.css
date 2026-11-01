@@ -60,117 +60,124 @@
 .theme-dance .grain           { opacity: .12; }
 
 /* =====================================================================
-   WORLD 2 — GRAPHIC DESIGN · a creative universe seen from deep space
-   Nebula, star fields, a ringed planet, a moon, a distant galaxy, orbits.
+   WORLD 2 — GRAPHIC DESIGN · looking out at space from orbit
+   Black sky, three star depths, the curve of the Earth with its
+   atmosphere glowing along the bottom edge. Clean white type.
    ===================================================================== */
 .theme-design {
-  --bg: #05030f;
-  --accent: #c9b8ff;
-  --text-dim: #c3bedb;
-  --btn-fg: #fff; --btn-bg: rgba(120, 90, 220, .18); --btn-border: rgba(201, 184, 255, .55);
-  --bg-text-stroke: rgba(201, 184, 255, .18); --bg-text-opacity: .5;
-  background: radial-gradient(ellipse 80% 60% at 50% 110%, #1a0f3a 0%, #0a0620 45%, var(--bg) 100%);
-  color: #ece9f7;
+  --bg: #02040a;
+  --accent: #9fd3ff;
+  --text-dim: #b8c4d6;
+  --btn-fg: #fff; --btn-bg: rgba(255,255,255,.04); --btn-border: rgba(255,255,255,.55);
+  background: radial-gradient(ellipse 120% 60% at 50% 115%, #0a1e3a 0%, #04091a 40%, var(--bg) 70%);
+  color: #f2f6fb;
 }
-.theme-design .nebula {
+.theme-design .stars          { animation: twinkle 5s ease-in-out infinite; }
+.theme-design .stars-far      { opacity: .5; background-size: 260px 260px, 320px 320px, 280px 280px, 340px 340px, 300px 300px, 240px 240px, 360px 360px, 290px 290px; }
+.theme-design .stars-mid      { opacity: .75; background-size: 520px 520px, 600px 600px, 480px 480px, 640px 640px, 560px 560px, 440px 440px, 680px 680px, 500px 500px; animation-delay: -2s; }
+.theme-design .stars-near     { opacity: 1; background-size: 900px 900px, 1000px 1000px, 850px 850px, 1100px 1100px, 950px 950px, 800px 800px, 1050px 1050px, 980px 980px; animation-delay: -4s; }
+.theme-design .shooting-star  { position: absolute; top: 18%; left: 62%; width: 160px; height: 1px; background: linear-gradient(90deg, #fff, transparent); transform: rotate(-28deg); opacity: 0; animation: shoot 11s ease-out infinite; pointer-events: none; }
+.theme-design .earth-wrap     { height: 30vh; }
+.theme-design .earth          { position: absolute; left: 50%; top: 30%; width: 320vw; height: 320vw; translate: -50% 0; border-radius: 999px;
   background:
-    radial-gradient(ellipse 45% 35% at 70% 30%, rgba(150, 70, 220, .45), transparent 70%),
-    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(40, 90, 230, .35), transparent 70%),
-    radial-gradient(ellipse 35% 30% at 55% 80%, rgba(230, 60, 160, .3), transparent 70%),
-    radial-gradient(ellipse 30% 25% at 85% 75%, rgba(60, 200, 230, .18), transparent 70%);
-  filter: blur(30px);
-  animation: nebula-drift 40s ease-in-out infinite alternate;
-}
-.theme-design .stars-far      { opacity: .55; }
-.theme-design .stars-near     { opacity: .9; background-size: 700px 700px, 800px 800px, 650px 650px, 900px 900px, 750px 750px, 600px 600px, 850px 850px, 720px 720px; animation-duration: 6s; }
-.theme-design .galaxy         { width: 26vw; height: 26vw; border-radius: 999px; background: conic-gradient(from 0deg, transparent 0 20%, rgba(255,255,255,.08) 25%, transparent 35%, transparent 55%, rgba(201,184,255,.1) 62%, transparent 72%); filter: blur(10px); transform: rotate(-20deg) scaleY(.45); animation: slow-spin 180s linear infinite; }
-.theme-design .moon           { width: 7vw; height: 7vw; border-radius: 999px; background: radial-gradient(circle at 35% 35%, #e6e2f5, #8a84a8 55%, #2a2740 100%); box-shadow: -10px -10px 40px rgba(201,184,255,.15), inset -12px -12px 30px rgba(0,0,0,.6); }
-.theme-design .planet-wrap    { width: 70vmin; height: 70vmin; }
-.theme-design .planet         { position: absolute; inset: 12%; border-radius: 999px; background: radial-gradient(circle at 32% 30%, #6b4bd6 0%, #2d1b6e 40%, #120a33 70%, #05030f 100%); box-shadow: inset -40px -30px 90px rgba(0,0,0,.8), 0 0 90px rgba(120, 90, 220, .35), 0 0 180px rgba(230, 60, 160, .15); }
-.theme-design .planet::after  { content: ""; position: absolute; inset: 0; border-radius: 999px; background: repeating-linear-gradient(8deg, transparent 0 18px, rgba(255,255,255,.035) 18px 26px); mask-image: radial-gradient(circle, #000 60%, transparent 72%); }
-.theme-design .ring           { position: absolute; left: 50%; top: 50%; width: 140%; height: 140%; translate: -50% -50%; border-radius: 999px; border: 2px solid rgba(201,184,255,.35); transform: rotateX(72deg) rotateZ(-18deg); box-shadow: 0 0 30px rgba(201,184,255,.15); }
-.theme-design .ring-2         { width: 160%; height: 160%; border-width: 8px; border-color: rgba(201,184,255,.08); }
-.theme-design .orbit          { border: 1px solid rgba(201,184,255,.12); border-radius: 999px; }
-.theme-design .orbit-1        { left: -20vw; top: 10vh; width: 120vw; height: 90vh; transform: rotate(-12deg); }
-.theme-design .orbit-2        { left: 10vw; top: -30vh; width: 110vw; height: 120vh; transform: rotate(8deg); border-style: dashed; opacity: .6; }
-.theme-design .title {
-  font-family: var(--font-space); text-transform: uppercase; letter-spacing: -.01em;
-  font-size: clamp(2.2rem, 6.2vw, 5.4rem);
-  background: linear-gradient(180deg, #fff 0%, #e6e2f5 35%, #8f7fd0 52%, #f3f0ff 64%, #b9aee6 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 0 30px rgba(201,184,255,.25));
-}
+    radial-gradient(ellipse 18% 6% at 36% 1.5%, rgba(110,150,90,.5), transparent 70%),
+    radial-gradient(ellipse 14% 4% at 62% 2%, rgba(150,130,80,.4), transparent 70%),
+    radial-gradient(ellipse 60% 5% at 50% .5%, rgba(255,255,255,.4), transparent 70%),
+    radial-gradient(ellipse 100% 18% at 50% 0%, #2a6fb8 0%, #123f7a 20%, #081d3f 45%, #03091a 75%);
+  box-shadow: inset 0 20px 40px rgba(255,255,255,.08); }
+.theme-design .earth-rim      { position: absolute; left: 50%; top: 30%; width: 320vw; height: 320vw; translate: -50% 0; border-radius: 999px; box-shadow: 0 -1px 0 #fff, 0 -5px 16px rgba(180,220,255,.95), 0 -16px 44px rgba(90,160,255,.6), 0 -44px 110px rgba(40,100,220,.3); pointer-events: none; }
+.theme-design .atmosphere     { position: absolute; left: 50%; top: 24%; width: 324vw; height: 324vw; translate: -50% 0; border-radius: 999px; background: radial-gradient(ellipse 100% 4% at 50% 0%, rgba(120,190,255,.5), rgba(60,120,220,.12) 60%, transparent 100%); filter: blur(26px); }
+.theme-design .title          { font-family: var(--font-space); text-transform: uppercase; letter-spacing: .02em; font-size: clamp(2.1rem, 5.8vw, 5rem); color: #fff; text-shadow: 0 0 40px rgba(159,211,255,.25); }
 .theme-design .eyebrow,
 .theme-design .meta,
 .theme-design .site-name,
 .theme-design .nav-label,
-.theme-design .portfolio-btn  { font-family: var(--font-orbitron); }
+.theme-design .portfolio-btn  { font-family: var(--font-space); letter-spacing: .45em; }
+.theme-design .eyebrow        { color: #fff; opacity: .85; font-size: 10px; }
 .theme-design .description    { font-family: var(--font-mono); }
-.theme-design .portfolio-btn  { backdrop-filter: blur(8px); box-shadow: 0 0 40px rgba(120,90,220,.25); }
-.theme-design .portfolio-btn:hover { background: #fff; color: #0a0620; }
-.theme-design .bg-text        { font-family: var(--font-space); font-size: clamp(4rem, 15vw, 16rem); }
-.theme-design .photo          { filter: drop-shadow(0 30px 60px rgba(0,0,0,.9)) drop-shadow(0 0 40px rgba(201,184,255,.18)); }
-.theme-design .rule           { background: linear-gradient(90deg, #c9b8ff, rgba(230,60,160,.6), transparent); }
-.theme-design .vignette       { background: radial-gradient(ellipse 80% 70% at 50% 45%, transparent 45%, rgba(3,2,10,.8) 100%); }
+.theme-design .portfolio-btn  { backdrop-filter: blur(8px); font-size: 10px; }
+.theme-design .portfolio-btn:hover { background: #fff; color: #02040a; }
+.theme-design .photo          { filter: drop-shadow(0 30px 60px rgba(0,0,0,.9)) drop-shadow(0 0 40px rgba(159,211,255,.15)); }
+.theme-design .rule           { background: linear-gradient(90deg, #fff, rgba(159,211,255,.5), transparent); }
+.theme-design .vignette       { background: radial-gradient(ellipse 80% 70% at 50% 45%, transparent 55%, rgba(0,0,0,.6) 100%); }
+.theme-design .grain          { opacity: .05; }
 
 /* =====================================================================
-   WORLD 3 — UNITY DEVELOPER · premium fantasy RPG title screen
-   Twilight sky, ruined spires, fog, motes, magic circle, gold + violet.
+   WORLD 3 — UNITY DEVELOPER · bright HD-2D JRPG overworld
+   Blue sky, soft clouds, far mountains + castle, green meadow, blurred
+   foreground flowers, a pixel party running. Text in JRPG windows.
    ===================================================================== */
 .theme-unity {
-  --bg: #070a1a;
-  --accent: #e8c56a;
-  --text-dim: #d9d2e8;
-  --btn-fg: #1a1230; --btn-bg: linear-gradient(180deg, #f3dc95, #c89b3c); --btn-border: #f3dc95;
-  --bg-text-stroke: rgba(232, 197, 106, .16); --bg-text-opacity: .5;
-  background: var(--bg);
-  color: #f1ecf7;
+  --bg: #4b8f3a;
+  --accent: #ffd36b;
+  --text-dim: #e9e4d6;
+  --btn-fg: #1a1230; --btn-bg: linear-gradient(180deg, #ffe6a0, #d8a640); --btn-border: #fff2c4;
+  background: #8fcbf0;
+  color: #fffaf0;
 }
-.theme-unity .sky             { background: linear-gradient(180deg, #060818 0%, #141a4a 35%, #3c2a6e 60%, #7a4a7a 78%, #1a1230 100%); }
-.theme-unity .sunbeam         { position: absolute; left: 50%; bottom: 10vh; width: 60vw; height: 70vh; translate: -50% 0; background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(232,197,106,.35), rgba(120,80,200,.12) 45%, transparent 70%); filter: blur(20px); pointer-events: none; }
-.theme-unity .ruins           { color: #0b0d22; }
-.theme-unity .ruins-far       { color: #1b1a3e; opacity: .85; filter: blur(1px); }
-.theme-unity .ruins-near      { color: #080a1c; filter: drop-shadow(0 -10px 30px rgba(0,0,0,.6)); }
-.theme-unity .fog             { position: absolute; left: -20%; width: 140%; height: 26vh; bottom: 0; background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(170,150,220,.35), transparent 70%); filter: blur(30px); animation: fog-drift 30s ease-in-out infinite alternate; pointer-events: none; }
-.theme-unity .fog-2           { bottom: 8vh; height: 18vh; opacity: .6; animation-duration: 42s; animation-direction: alternate-reverse; }
-.theme-unity .motes {
+.theme-unity .sky             { background: linear-gradient(180deg, #2e7fd8 0%, #6fb6ec 40%, #b9e2f7 70%, #e3f3fb 100%); }
+.theme-unity .sun             { position: absolute; left: 70%; top: 6%; width: 28vw; height: 28vw; border-radius: 999px; background: radial-gradient(circle, rgba(255,250,220,.9) 0%, rgba(255,240,190,.35) 25%, transparent 60%); filter: blur(10px); pointer-events: none; }
+.theme-unity .cloud           { position: absolute; border-radius: 999px; background: #fff; filter: blur(14px); opacity: .9; pointer-events: none; animation: cloud-drift 60s linear infinite alternate; }
+.theme-unity .cloud::before,
+.theme-unity .cloud::after    { content: ""; position: absolute; border-radius: 999px; background: #fff; }
+.theme-unity .cloud-1         { left: 6%; top: 10%; width: 22vw; height: 7vw; }
+.theme-unity .cloud-1::before { left: 18%; top: -60%; width: 40%; height: 150%; }
+.theme-unity .cloud-1::after  { left: 50%; top: -40%; width: 36%; height: 130%; }
+.theme-unity .cloud-2         { left: 42%; top: 4%; width: 18vw; height: 5vw; opacity: .8; animation-duration: 80s; animation-delay: -30s; }
+.theme-unity .cloud-2::before { left: 30%; top: -70%; width: 40%; height: 160%; }
+.theme-unity .cloud-3         { left: 74%; top: 22%; width: 26vw; height: 6vw; opacity: .75; animation-duration: 95s; animation-delay: -50s; }
+.theme-unity .cloud-3::before { left: 10%; top: -50%; width: 35%; height: 140%; }
+.theme-unity .cloud-3::after  { left: 55%; top: -80%; width: 38%; height: 170%; }
+.theme-unity .mountains-far   { color: #6f93b8; opacity: .8; filter: blur(2px); }
+.theme-unity .mountains-near  { color: #3f7a5a; filter: blur(1px); }
+.theme-unity .castle          { color: #4a5a78; filter: blur(.8px) drop-shadow(0 0 20px rgba(255,255,255,.4)); }
+.theme-unity .haze            { background: linear-gradient(to top, rgba(224,243,251,.9), transparent); }
+.theme-unity .hill            { position: absolute; left: -15%; width: 130%; border-radius: 50% 50% 0 0 / 100% 100% 0 0; pointer-events: none; }
+.theme-unity .hill-back       { bottom: 0; height: 44vh; background: linear-gradient(180deg, #7fd05a 0%, #4fa83f 50%, #3a8a34 100%); }
+.theme-unity .hill-front      { bottom: -10vh; left: -25%; width: 150%; height: 36vh; background: linear-gradient(180deg, #8fdc62 0%, #58b545 45%, #3f9339 100%); box-shadow: 0 -20px 60px rgba(40,100,30,.25); }
+.theme-unity .grass-blades    { position: absolute; left: 0; right: 0; bottom: 0; height: 30vh; background-image: repeating-linear-gradient(100deg, transparent 0 14px, rgba(255,255,255,.07) 14px 16px), repeating-linear-gradient(80deg, transparent 0 22px, rgba(0,60,0,.08) 22px 24px); mask-image: linear-gradient(to top, #000 40%, transparent); pointer-events: none; }
+.theme-unity .flowers {
   background-image:
-    radial-gradient(2px 2px at 15% 80%, rgba(232,197,106,.9) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 35% 60%, rgba(255,240,200,.8) 50%, transparent 51%),
-    radial-gradient(2px 2px at 60% 75%, rgba(232,197,106,.8) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 80% 55%, rgba(170,230,200,.8) 50%, transparent 51%),
-    radial-gradient(2.5px 2.5px at 48% 40%, rgba(232,197,106,.7) 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 90% 85%, rgba(255,240,200,.7) 50%, transparent 51%);
-  background-size: 600px 600px, 500px 500px, 700px 700px, 550px 550px, 800px 800px, 650px 650px;
-  animation: motes-rise 22s linear infinite;
-  pointer-events: none;
+    radial-gradient(circle at 8% 70%, #ff7fb0 0 14px, transparent 15px),
+    radial-gradient(circle at 12% 62%, #ffd3e4 0 6px, transparent 7px),
+    radial-gradient(circle at 22% 85%, #ffffff 0 10px, transparent 11px),
+    radial-gradient(circle at 30% 75%, #8ab4ff 0 8px, transparent 9px),
+    radial-gradient(circle at 48% 90%, #ffe066 0 9px, transparent 10px),
+    radial-gradient(circle at 66% 82%, #ff9ac2 0 12px, transparent 13px),
+    radial-gradient(circle at 80% 72%, #ffffff 0 7px, transparent 8px),
+    radial-gradient(circle at 92% 88%, #8ab4ff 0 11px, transparent 12px);
+  filter: blur(6px); opacity: .9; pointer-events: none;
 }
-.theme-unity .motes-2         { animation-duration: 34s; animation-delay: -12s; opacity: .6; background-size: 450px 450px, 650px 650px, 520px 520px, 700px 700px, 600px 600px, 480px 480px; }
-.theme-unity .magic           { color: #e8c56a; opacity: .55; filter: drop-shadow(0 0 12px rgba(232,197,106,.6)); animation: slow-spin 90s linear infinite; transform-origin: center; }
-.theme-unity .pedestal-glow   { width: 50vw; height: 14vh; background: radial-gradient(ellipse at 50% 100%, rgba(232,197,106,.55), transparent 70%); filter: blur(10px); }
+.theme-unity .runner          { position: absolute; bottom: 0; left: -120px; animation: run-across 22s linear infinite; }
+.theme-unity .sprite          { animation: hop .45s steps(2) infinite; filter: drop-shadow(0 6px 4px rgba(0,40,0,.35)); image-rendering: pixelated; }
+.theme-unity .photo-ground    { width: 44vw; height: 8vh; background: radial-gradient(ellipse at 50% 100%, rgba(20,60,10,.45), transparent 70%); filter: blur(8px); }
+.theme-unity .photo           { filter: drop-shadow(0 20px 40px rgba(10,40,10,.55)); }
+.theme-unity .window          { background: rgba(14, 18, 44, .78); border: 2px solid #ffe6a0; outline: 1px solid rgba(14,18,44,.9); outline-offset: 2px; box-shadow: 0 20px 60px rgba(0,30,0,.35), inset 0 0 0 1px rgba(255,255,255,.08); padding: 1.6rem 1.8rem; backdrop-filter: blur(6px); }
 .theme-unity .eyebrow,
 .theme-unity .meta,
 .theme-unity .site-name,
 .theme-unity .nav-label,
 .theme-unity .lore-head,
 .theme-unity .portfolio-btn   { font-family: var(--font-fantasy); }
-.theme-unity .eyebrow         { letter-spacing: .45em; color: #e8c56a; }
-.theme-unity .title           { font-family: var(--font-fantasy); font-weight: 700; font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.05; color: #fbf3dc; text-shadow: 0 0 30px rgba(232,197,106,.45), 0 2px 0 rgba(0,0,0,.6); }
-.theme-unity .ornament        { width: 9rem; height: 10px; background: linear-gradient(90deg, transparent, #e8c56a 20%, #e8c56a 80%, transparent) center / 100% 1px no-repeat, radial-gradient(circle, #e8c56a 2.5px, transparent 3px) center / 10px 10px no-repeat; }
-.theme-unity .description     { font-family: var(--font-serif); font-size: clamp(1.05rem, 1.25vw, 1.2rem); line-height: 1.6; }
-.theme-unity .lore            { border-left: 1px solid rgba(232,197,106,.35); padding-left: 1.5rem; }
-.theme-unity .lore-head       { font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: #e8c56a; }
-.theme-unity .portfolio-btn   { font-size: 11px; letter-spacing: .3em; box-shadow: 0 0 40px rgba(232,197,106,.35), inset 0 1px 0 rgba(255,255,255,.5); }
+.theme-unity .site-name       { color: #1a1230; }
+.theme-unity .eyebrow         { letter-spacing: .4em; color: #ffd36b; font-size: 10px; }
+.theme-unity .title           { font-family: var(--font-fantasy); font-weight: 700; font-size: clamp(1.9rem, 3.6vw, 3.1rem); line-height: 1.1; color: #fff7e3; text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 24px rgba(255,211,107,.35); }
+.theme-unity .ornament        { width: 8rem; height: 10px; background: linear-gradient(90deg, transparent, #ffd36b 20%, #ffd36b 80%, transparent) center / 100% 1px no-repeat, radial-gradient(circle, #ffd36b 2.5px, transparent 3px) center / 10px 10px no-repeat; }
+.theme-unity .description     { font-family: var(--font-serif); font-size: clamp(1.02rem, 1.15vw, 1.15rem); line-height: 1.55; color: #f3eee0; }
+.theme-unity .lore-head       { font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #ffd36b; }
+.theme-unity .portfolio-btn   { font-size: 11px; letter-spacing: .3em; box-shadow: 0 0 30px rgba(255,211,107,.35), inset 0 1px 0 rgba(255,255,255,.6); }
 .theme-unity .portfolio-btn:hover { background: #fff; }
-.theme-unity .bg-text         { font-family: var(--font-fantasy); font-size: clamp(4rem, 16vw, 16rem); }
-.theme-unity .photo           { filter: drop-shadow(0 30px 60px rgba(0,0,0,.85)) drop-shadow(0 0 40px rgba(232,197,106,.25)); }
-.theme-unity .nav-ring        { border-radius: 999px; }
-.theme-unity .nav-ring::before{ content: ""; position: absolute; inset: 4px; border-radius: 999px; border: 1px solid rgba(232,197,106,.3); }
-.theme-unity .vignette        { background: radial-gradient(ellipse 80% 70% at 50% 45%, transparent 45%, rgba(4,5,15,.85) 100%); }
+.theme-unity .meta            { color: #1a1230; opacity: .7; }
+.theme-unity .nav-btn         { color: #fff; }
+.theme-unity .nav-ring        { border-radius: 999px; background: rgba(14,18,44,.55); border-color: rgba(255,230,160,.7); }
+.theme-unity .rail            { background: linear-gradient(to bottom, transparent, rgba(255,255,255,.7) 30%, rgba(255,255,255,.7) 70%, transparent); opacity: .5; }
+.theme-unity .node            { background: #fff; box-shadow: 0 0 14px #fff; }
+.theme-unity .vignette        { background: radial-gradient(ellipse 85% 75% at 50% 50%, transparent 60%, rgba(20,40,80,.35) 100%); }
+.theme-unity .grain           { opacity: .05; }
 
 /* ---------- world animations ---------- */
 @keyframes star-spin    { 0%,100% { transform: rotate(0deg) scale(1);} 50% { transform: rotate(25deg) scale(1.15);} }
-@keyframes nebula-drift { from { transform: translate(0,0) scale(1);} to { transform: translate(-3%, 2%) scale(1.08);} }
-@keyframes slow-spin    { to { rotate: 360deg; } }
-@keyframes fog-drift    { from { transform: translateX(-4%);} to { transform: translateX(4%);} }
-@keyframes motes-rise   { from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; } to { background-position: 20px -600px, -30px -500px, 15px -700px, -20px -550px, 25px -800px, -15px -650px; } }
+@keyframes shoot        { 0%, 92% { opacity: 0; transform: rotate(-28deg) translateX(0);} 94% { opacity: 1;} 100% { opacity: 0; transform: rotate(-28deg) translateX(-50vw);} }
+@keyframes cloud-drift  { from { transform: translateX(-6vw);} to { transform: translateX(8vw);} }
+@keyframes run-across   { from { transform: translateX(0);} to { transform: translateX(calc(100vw + 240px));} }
+@keyframes hop          { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-6px);} }

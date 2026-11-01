@@ -3,7 +3,6 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import PageShell from '../components/PageShell'
 import Photo from '../components/Photo'
 import PortfolioButton from '../components/PortfolioButton'
-import BgText from '../components/BgText'
 import Reveal from '../components/Reveal'
 import { PAGES } from '../content/pages'
 
@@ -38,9 +37,9 @@ function Layer({ depth, px, className = '', children, style }) {
 
 /**
  * PAGE 2 — Graphic Design
- * Layout: text LEFT, photo RIGHT, standing in front of a ringed planet.
- * World: observing a creative universe from deep space. Nebula, stars,
- *        a large ringed planet, a distant moon, orbital paths, parallax.
+ * Layout: text LEFT, photo RIGHT, both floating above the Earth's horizon.
+ * World: literally looking out at space from orbit. Black sky, fine star
+ *        fields, the curve of the planet and its atmosphere along the bottom.
  * Theme styles: .theme-design in styles/themes.css
  * Content: src/content/pages.js → PAGES.design
  */
@@ -49,41 +48,30 @@ export default function DesignPage({ direction, go }) {
   const px = useParallax()
   return (
     <PageShell id="design" index={2} direction={direction} go={go} theme="theme-design">
-      {/* ---- deep background: nebula + star fields (slow parallax) ---- */}
-      <Layer depth={-6} px={px} className="inset-[-3%]">
-        <div className="nebula absolute inset-0" />
+      {/* ---- star fields at three depths ---- */}
+      <Layer depth={-4} px={px} className="inset-[-3%]">
         <div className="stars stars-far absolute inset-0" />
       </Layer>
-      <Layer depth={-14} px={px} className="inset-[-4%]">
+      <Layer depth={-9} px={px} className="inset-[-4%]">
+        <div className="stars stars-mid absolute inset-0" />
+      </Layer>
+      <Layer depth={-16} px={px} className="inset-[-5%]">
         <div className="stars stars-near absolute inset-0" />
       </Layer>
+      <div aria-hidden className="shooting-star" />
 
-      {/* ---- distant galaxy + moon ---- */}
-      <Layer depth={-10} px={px} className="galaxy left-[8%] top-[14%] hidden md:block" />
-      <Layer depth={-18} px={px} className="moon left-[22%] top-[22%]" />
-
-      {/* ---- ringed planet behind the photo ---- */}
-      <Layer depth={-22} px={px} className="planet-wrap right-[-14vw] top-1/2 -translate-y-1/2 md:right-[2vw]">
-        <div className="planet" />
-        <div className="ring" />
-        <div className="ring ring-2" />
+      {/* ---- the planet, mostly below the viewport ---- */}
+      <Layer depth={6} px={px} className="earth-wrap inset-x-0 bottom-0">
+        <div className="atmosphere" />
+        <div className="earth" />
+        <div className="earth-rim" />
       </Layer>
-
-      {/* ---- orbital paths ---- */}
-      <Layer depth={-8} px={px} className="orbit orbit-1" />
-      <Layer depth={-8} px={px} className="orbit orbit-2" />
-
-      <BgText className="left-[-1vw] top-[5vh] leading-[0.82]">
-        KOZMIK
-        <br />
-        KREATIONS
-      </BgText>
 
       {/* ---- photo ---- */}
       <Photo
         src={c.photo}
         alt={c.photoAlt}
-        className="absolute bottom-0 left-1/2 z-10 h-[52vh] w-[90vw] -translate-x-1/2 md:left-auto md:right-[10vw] md:h-[88vh] md:w-[38vw] md:translate-x-0"
+        className="absolute bottom-0 left-1/2 z-10 h-[52vh] w-[90vw] -translate-x-1/2 md:left-auto md:right-[10vw] md:h-[86vh] md:w-[38vw] md:translate-x-0"
       />
 
       {/* ---- text ---- */}

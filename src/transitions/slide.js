@@ -26,7 +26,7 @@ const FLAVORS = {
     ease: [0.65, 0, 0.2, 1],
   },
   unity: {
-    enter: { scale: 1.03, filter: 'brightness(1.8) blur(4px)' },
+    enter: { scale: 1.03, filter: 'brightness(1.6) blur(4px)' },
     exit: { scale: 0.98, filter: 'brightness(1.4) blur(4px)' },
     ease: [0.7, 0, 0.25, 1],
   },
