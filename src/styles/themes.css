@@ -1,0 +1,64 @@
+/* =====================================================================
+   PAGE THEMES
+   One block per page. Change colours and fonts for a page here without
+   touching the others.
+   ===================================================================== */
+
+/* ---------- Page 1: Dance Artist (Persona 5: red / black / cream) ---------- */
+.theme-dance {
+  background:
+    radial-gradient(circle, rgba(0,0,0,.35) 1px, transparent 1.3px) 0 0 / 7px 7px,
+    #e4002b;
+  color: #f4ecd8;
+}
+.theme-dance .title         { font-family: var(--font-persona); text-transform: uppercase; letter-spacing: .01em; text-shadow: 5px 5px 0 #0a0a0a; }
+.theme-dance .eyebrow,
+.theme-dance .description,
+.theme-dance .site-name,
+.theme-dance .nav-label,
+.theme-dance .portfolio-btn { font-family: var(--font-mono); }
+.theme-dance .portfolio-btn { background: #0a0a0a; border-color: #0a0a0a; color: #f4ecd8; clip-path: polygon(0 10%, 100% 0, 98% 100%, 2% 92%); }
+.theme-dance .portfolio-btn:hover { background: #f4ecd8; color: #0a0a0a; }
+.theme-dance .photo         { background: #0a0a0a; clip-path: polygon(0 3%, 100% 0, 97% 100%, 3% 97%); }
+
+/* ---------- Page 2: Graphic Design (space / silver chrome) ---------- */
+.theme-design {
+  background:
+    radial-gradient(ellipse 60% 40% at 75% 25%, rgba(120,130,160,.22), transparent 70%),
+    radial-gradient(ellipse 50% 50% at 15% 85%, rgba(80,85,110,.28), transparent 70%),
+    #07080c;
+  color: #c9ccd3;
+}
+.theme-design .title {
+  font-family: var(--font-space); text-transform: uppercase; letter-spacing: -.01em;
+  background: linear-gradient(180deg, #fff 0%, #d9dce2 35%, #6f7480 50%, #e9ebef 62%, #a2a7b1 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.theme-design .eyebrow,
+.theme-design .site-name,
+.theme-design .nav-label,
+.theme-design .portfolio-btn { font-family: var(--font-orbitron); }
+.theme-design .description  { font-family: var(--font-mono); color: rgba(201,204,211,.85); }
+.theme-design .portfolio-btn { color: #fff; border-color: rgba(201,204,211,.6); background: linear-gradient(180deg,#1a1c22,#07080c); }
+.theme-design .portfolio-btn:hover { background: #fff; color: #07080c; }
+.theme-design .photo        { background: #11131a; border: 1px solid rgba(201,204,211,.25); }
+
+/* ---------- Page 3: Unity Developer (pixel / retro RPG) ---------- */
+.theme-unity {
+  background: linear-gradient(#7ec8e3 0 72%, #4caf50 72% 76%, #2e7d32 76% 78%, #5d3f24 78%);
+  color: #1b1b2f;
+  image-rendering: pixelated;
+}
+.theme-unity .title         { font-family: var(--font-pixel); font-size: clamp(1.5rem, 3.6vw, 2.8rem); line-height: 1.25; }
+.theme-unity .eyebrow,
+.theme-unity .site-name,
+.theme-unity .nav-label     { font-family: var(--font-pixel); font-size: 9px; }
+.theme-unity .description   { font-family: var(--font-pixelsans); font-size: clamp(1.05rem, 1.3vw, 1.25rem); line-height: 1.5; }
+.theme-unity .portfolio-btn {
+  font-family: var(--font-pixel); font-size: 10px; letter-spacing: .1em;
+  background: #1b1b2f; color: #fff; border: 0;
+  box-shadow: 0 -4px 0 0 #0a0a0a, 0 4px 0 0 #0a0a0a, -4px 0 0 0 #0a0a0a, 4px 0 0 0 #0a0a0a;
+}
+.theme-unity .portfolio-btn:hover { background: #ffd54f; color: #1b1b2f; }
+.theme-unity .photo         { background: #1b1b2f; box-shadow: 0 -4px 0 0 #0a0a0a, 0 4px 0 0 #0a0a0a, -4px 0 0 0 #0a0a0a, 4px 0 0 0 #0a0a0a; }
+.theme-unity .nav-btn span  { border-radius: 0; }

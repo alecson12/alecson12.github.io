@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* Fonts are loaded in index.html (Google Fonts). */
+@theme {
+  --font-persona: "Anton", "Impact", sans-serif;
+  --font-space: "Michroma", "Orbitron", sans-serif;
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-mono: "Space Mono", monospace;
+  --font-pixel: "Press Start 2P", monospace;
+  --font-pixelsans: "Pixelify Sans", monospace;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: #0a0a0a;
+  color: #fff;
+  overflow: hidden;              /* the stage handles everything; no page scroll */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Shared element styles. Each theme (themes.css) recolours these. */
+.eyebrow      { font-size: 11px; letter-spacing: .35em; text-transform: uppercase; opacity: .75; }
+.title        { line-height: .95; font-size: clamp(2.6rem, 8vw, 6.5rem); }
+.description  { font-size: clamp(.95rem, 1.1vw, 1.1rem); line-height: 1.7; }
+.portfolio-btn{ border: 1px solid currentColor; transition: background .25s, color .25s; }
+.photo img    { display: block; }
+.nav-btn      { color: inherit; }
+
+/* Subtle textures kept from the first version */
+.stars {
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 70% 15%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 40% 80%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 85% 60%, #cfd3da 50%, transparent 51%),
+    radial-gradient(1px 1px at 10% 70%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 55% 45%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 92% 88%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 33% 10%, #cfd3da 50%, transparent 51%);
+  background-size: 400px 400px, 500px 500px, 350px 350px, 600px 600px, 450px 450px, 300px 300px, 550px 550px, 420px 420px;
+}
+.scanlines {
+  background-image: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 2px, transparent 2px 4px);
+}
