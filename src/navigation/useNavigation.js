@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
-import { DEFAULT_PAGE, ORDER, isPage } from './routes'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { DEFAULT_PAGE, KEYS, directionBetween, isPage } from './routes'
+import { SLIDE_DURATION } from '../transitions/slide'
 
 const fromHash = () => {
   const id = window.location.hash.replace('#', '')
@@ -7,42 +8,46 @@ const fromHash = () => {
 }
 
 /**
- * Holds the current page and the direction of the last move.
- *  direction  1 = slide left (forward), -1 = slide right (back)
- * Also syncs with the URL hash (#dance, #design, #unity) so each page is
- * linkable and the browser back button works, and adds arrow-key support.
+ * Holds the current page and the 2D direction of the last move.
+ *  direction = { x, y }  e.g. { x: 1, y: 0 } slides left (moving right),
+ *                            { x: 0, y: 1 } slides up (moving down).
+ * Syncs with the URL hash (#dance, #design, #unity), supports the browser
+ * back button and arrow keys, and ignores clicks while a slide is running.
  */
 export function useNavigation() {
   const [page, setPage] = useState(fromHash)
-  const [direction, setDirection] = useState(1)
+  const [direction, setDirection] = useState({ x: 1, y: 0 })
+  const busy = useRef(false)
 
-  const go = useCallback(
-    (to) => {
-      if (!isPage(to) || to === page) return
-      setDirection(ORDER.indexOf(to) > ORDER.indexOf(page) ? 1 : -1)
+  const move = useCallback(
+    (to, pushHistory) => {
+      if (!isPage(to) || to === page || busy.current) return
+      busy.current = true
+      setTimeout(() => (busy.current = false), SLIDE_DURATION * 1000 + 50)
+      setDirection(directionBetween(page, to))
       setPage(to)
-      window.history.pushState(null, '', `#${to}`)
+      if (pushHistory) window.history.pushState(null, '', `#${to}`)
     },
     [page],
   )
 
+  const go = useCallback((to) => move(to, true), [move])
+
   // Browser back / forward
   useEffect(() => {
-    const onPop = () => {
-      const to = fromHash()
-      setDirection(ORDER.indexOf(to) > ORDER.indexOf(page) ? 1 : -1)
-      setPage(to)
-    }
+    const onPop = () => move(fromHash(), false)
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)
-  }, [page])
+  }, [move])
 
   // Keyboard arrows
   useEffect(() => {
     const onKey = (e) => {
-      const i = ORDER.indexOf(page)
-      if (e.key === 'ArrowRight' && ORDER[i + 1]) go(ORDER[i + 1])
-      if (e.key === 'ArrowLeft' && ORDER[i - 1]) go(ORDER[i - 1])
+      const to = KEYS[page]?.[e.key]
+      if (to) {
+        e.preventDefault()
+        go(to)
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

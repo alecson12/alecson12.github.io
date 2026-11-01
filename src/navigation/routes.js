@@ -1,15 +1,25 @@
 /**
  * Navigation map.
  *
- *  ORDER      decides slide direction: moving to a page further right in
- *             this list slides left, moving back slides right.
+ *  LAYOUT     places each page on a 2D grid. The slide direction between
+ *             two pages is the vector between their positions, so
+ *             Dance → Design slides horizontally, Dance → Unity slides
+ *             down, Design → Unity slides diagonally.
+ *
+ *               dance (0,0)        design (1,0)
+ *                         unity (0.5,1)
+ *
  *  NAV_LINKS  decides which arrow buttons each page shows and where they
  *             sit on screen. Edit labels or positions here.
  *
  *  position options: 'left' | 'right' | 'bottom' | 'top-left' | 'top-right'
  */
 
-export const ORDER = ['dance', 'design', 'unity']
+export const LAYOUT = {
+  dance: { x: 0, y: 0 },
+  design: { x: 1, y: 0 },
+  unity: { x: 0.5, y: 1 },
+}
 
 export const NAV_LINKS = {
   dance: [
@@ -26,6 +36,23 @@ export const NAV_LINKS = {
   ],
 }
 
-export const DEFAULT_PAGE = ORDER[0]
+/** Keyboard arrows: which page each key leads to from each page. */
+export const KEYS = {
+  dance: { ArrowRight: 'design', ArrowDown: 'unity' },
+  design: { ArrowLeft: 'dance', ArrowDown: 'unity' },
+  unity: { ArrowUp: 'dance', ArrowLeft: 'dance', ArrowRight: 'design' },
+}
 
-export const isPage = (id) => ORDER.includes(id)
+export const PAGE_IDS = Object.keys(LAYOUT)
+export const DEFAULT_PAGE = 'dance'
+export const isPage = (id) => id in LAYOUT
+
+/** Unit-ish direction vector from one page to another (longest axis = 1). */
+export function directionBetween(from, to) {
+  const a = LAYOUT[from]
+  const b = LAYOUT[to]
+  const dx = b.x - a.x
+  const dy = b.y - a.y
+  const m = Math.max(Math.abs(dx), Math.abs(dy)) || 1
+  return { x: dx / m, y: dy / m }
+}

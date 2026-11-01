@@ -1,38 +1,59 @@
-import { motion } from 'framer-motion'
 import PageShell from '../components/PageShell'
 import Photo from '../components/Photo'
 import PortfolioButton from '../components/PortfolioButton'
+import BgText from '../components/BgText'
+import Reveal from '../components/Reveal'
 import { PAGES } from '../content/pages'
-import { contentVariants } from '../transitions/slide'
 
 /**
  * PAGE 1 — Dance Artist
- * Layout: photo on the LEFT, text on the RIGHT (matches the sketch).
- * Theme: Persona 5 inspired, red / black / cream. Styles in styles/themes.css.
- * Content: edit src/content/pages.js → PAGES.dance
+ * Layout: photo LEFT (bleeds to the bottom edge), text RIGHT.
+ * Mood: dark stage, red light, street / Persona-5 attitude.
+ * Theme styles: .theme-dance in styles/themes.css
+ * Content: src/content/pages.js → PAGES.dance
  */
 export default function DancePage({ direction, go }) {
   const c = PAGES.dance
   return (
-    <PageShell id="dance" direction={direction} go={go} theme="theme-dance">
-      <div className="mx-auto grid min-h-full max-w-7xl grid-cols-1 items-center gap-8 px-6 pb-28 pt-20 md:grid-cols-[5fr_6fr] md:gap-12 md:px-20 md:pb-24">
-        <Photo src={c.photo} alt={c.photoAlt} className="h-[42vh] w-full md:h-[72vh]" />
+    <PageShell id="dance" index={1} direction={direction} go={go} theme="theme-dance">
+      {/* ---- background layers ---- */}
+      <div aria-hidden className="glow glow-a" />
+      <div aria-hidden className="glow glow-b" />
+      <div aria-hidden className="halftone absolute inset-0" />
+      <div aria-hidden className="slash" />
+      <BgText className="right-[-2vw] top-[8vh] text-right leading-[0.78]">
+        DANCE
+        <br />
+        ARTIST
+      </BgText>
 
-        <div className="flex flex-col items-start md:pl-6">
-          <motion.p custom={0} variants={contentVariants} initial="hidden" animate="show" className="eyebrow">
-            {c.eyebrow}
-          </motion.p>
-          <motion.h1 custom={1} variants={contentVariants} initial="hidden" animate="show" className="title mt-3">
-            {c.title}
-          </motion.h1>
-          <motion.p custom={2} variants={contentVariants} initial="hidden" animate="show" className="description mt-6 max-w-md">
-            {c.description}
-          </motion.p>
-          <motion.div custom={3} variants={contentVariants} initial="hidden" animate="show" className="mt-10">
-            <PortfolioButton href={c.portfolioLink} label={c.buttonLabel} />
-          </motion.div>
-        </div>
+      {/* ---- photo ---- */}
+      <Photo
+        src={c.photo}
+        alt={c.photoAlt}
+        className="absolute bottom-0 left-1/2 z-10 h-[52vh] w-[90vw] -translate-x-1/2 md:left-[7vw] md:h-[94vh] md:w-[44vw] md:translate-x-0"
+      />
+
+      {/* ---- text ---- */}
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-start px-6 pb-24 md:inset-x-auto md:right-[8vw] md:top-1/2 md:w-[40vw] md:-translate-y-1/2 md:pb-0">
+        <Reveal i={0} as="p" className="eyebrow">
+          {c.eyebrow}
+        </Reveal>
+        <Reveal i={1} as="h1" className="title mt-4">
+          {c.title}
+        </Reveal>
+        <Reveal i={2} as="p" className="description mt-6 max-w-md">
+          {c.description}
+        </Reveal>
+        <Reveal i={3} className="mt-9">
+          <PortfolioButton href={c.portfolioLink} label={c.buttonLabel} />
+        </Reveal>
       </div>
+
+      {/* ---- small details ---- */}
+      <Reveal i={4} as="p" className="meta absolute bottom-7 right-8 z-10 hidden md:block">
+        JR TSUBAKI · BULACAN, PH
+      </Reveal>
     </PageShell>
   )
 }

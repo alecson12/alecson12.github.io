@@ -1,18 +1,20 @@
 import { motion } from 'framer-motion'
+import { photoVariants } from '../transitions/slide'
 
 /**
  * The large personal photograph on each page.
  * Replace the image by changing `photo` in src/content/pages.js.
+ * The theme (.photo in themes.css) controls the frame, glow and fade.
  */
 export default function Photo({ src, alt, className = '' }) {
   return (
     <motion.figure
-      initial={{ opacity: 0, scale: 1.04 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 0.35, duration: 0.8, ease: 'easeOut' }}
-      className={`photo relative m-0 overflow-hidden ${className}`}
+      variants={photoVariants}
+      initial="hidden"
+      animate="show"
+      className={`photo m-0 ${className}`}
     >
-      <img src={src} alt={alt} className="h-full w-full object-cover object-top" draggable="false" />
+      <img src={src} alt={alt} className="h-full w-full object-contain object-bottom" draggable="false" />
     </motion.figure>
   )
 }

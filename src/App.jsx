@@ -18,7 +18,7 @@ export default function App() {
   return (
     // Fixed, non-scrolling stage. Pages are absolutely positioned inside it
     // and AnimatePresence keeps the old page mounted while the new one slides in.
-    <main className="stage fixed inset-0 overflow-hidden">
+    <main className="stage fixed inset-0 overflow-hidden bg-black">
       <AnimatePresence initial={false} custom={direction}>
         <Page key={page} direction={direction} go={go} />
       </AnimatePresence>

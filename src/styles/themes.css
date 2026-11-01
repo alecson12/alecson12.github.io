@@ -1,64 +1,112 @@
 /* =====================================================================
    PAGE THEMES
-   One block per page. Change colours and fonts for a page here without
-   touching the others.
+   One block per page. Each sets a handful of CSS variables that the
+   shared styles in index.css read, then adds its own fonts and details.
+
+     --bg            page background colour (also used to fade the photo)
+     --accent        glowing accent (rails, nodes, eyebrow, hover ring)
+     --text-dim      body text colour
+     --btn-*         "View Portfolio" button colours
+     --bg-text-*     the oversized word behind the content
    ===================================================================== */
 
-/* ---------- Page 1: Dance Artist (Persona 5: red / black / cream) ---------- */
+/* ---------- Page 1: Dance Artist — dark stage, red light ---------- */
 .theme-dance {
+  --bg: #0b0608;
+  --accent: #ff1744;
+  --text-dim: #d9cfc4;
+  --btn-fg: #0b0608; --btn-bg: #f4ecd8; --btn-border: #f4ecd8;
+  --bg-text-stroke: rgba(255, 23, 68, .35); --bg-text-opacity: .55;
   background:
-    radial-gradient(circle, rgba(0,0,0,.35) 1px, transparent 1.3px) 0 0 / 7px 7px,
-    #e4002b;
+    radial-gradient(ellipse 70% 60% at 25% 80%, rgba(228, 0, 43, .35), transparent 70%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(120, 0, 30, .35), transparent 70%),
+    var(--bg);
   color: #f4ecd8;
 }
-.theme-dance .title         { font-family: var(--font-persona); text-transform: uppercase; letter-spacing: .01em; text-shadow: 5px 5px 0 #0a0a0a; }
+.theme-dance .title          { font-family: var(--font-persona); text-transform: uppercase; color: #f4ecd8; text-shadow: 0 0 40px rgba(255, 23, 68, .35), 6px 6px 0 #0b0608; }
 .theme-dance .eyebrow,
 .theme-dance .description,
+.theme-dance .meta,
 .theme-dance .site-name,
 .theme-dance .nav-label,
-.theme-dance .portfolio-btn { font-family: var(--font-mono); }
-.theme-dance .portfolio-btn { background: #0a0a0a; border-color: #0a0a0a; color: #f4ecd8; clip-path: polygon(0 10%, 100% 0, 98% 100%, 2% 92%); }
-.theme-dance .portfolio-btn:hover { background: #f4ecd8; color: #0a0a0a; }
-.theme-dance .photo         { background: #0a0a0a; clip-path: polygon(0 3%, 100% 0, 97% 100%, 3% 97%); }
+.theme-dance .portfolio-btn  { font-family: var(--font-mono); }
+.theme-dance .portfolio-btn  { clip-path: polygon(0 12%, 100% 0, 98% 100%, 2% 90%); border: 0; }
+.theme-dance .portfolio-btn:hover { background: var(--accent); color: #fff; }
+.theme-dance .bg-text        { font-family: var(--font-persona); }
+.theme-dance .glow-a         { left: 5vw; bottom: -10vh; width: 45vw; height: 45vw; background: rgba(228, 0, 43, .35); }
+.theme-dance .glow-b         { right: 10vw; top: -10vh; width: 30vw; height: 30vw; background: rgba(255, 23, 68, .14); animation-delay: -6s; }
+.theme-dance .slash          { position: absolute; top: -10%; bottom: -10%; left: 38%; width: 18vw; background: linear-gradient(to bottom, rgba(228,0,43,.75), rgba(228,0,43,.15)); transform: skewX(-14deg); opacity: .35; }
+.theme-dance .photo          { filter: drop-shadow(0 30px 60px rgba(0,0,0,.7)) drop-shadow(0 0 40px rgba(255,23,68,.25)); }
+.theme-dance .nav-ring       { border-radius: 4px; transform: rotate(45deg); }
+.theme-dance .nav-ring svg   { transform: rotate(-45deg); }
 
-/* ---------- Page 2: Graphic Design (space / silver chrome) ---------- */
+/* ---------- Page 2: Graphic Design — deep space, chrome ---------- */
 .theme-design {
+  --bg: #06070b;
+  --accent: #c9ccd3;
+  --text-dim: #aeb3bd;
+  --btn-fg: #fff; --btn-bg: rgba(255,255,255,.04); --btn-border: rgba(201,204,211,.5);
+  --bg-text-stroke: rgba(201, 204, 211, .22); --bg-text-opacity: .5;
   background:
-    radial-gradient(ellipse 60% 40% at 75% 25%, rgba(120,130,160,.22), transparent 70%),
-    radial-gradient(ellipse 50% 50% at 15% 85%, rgba(80,85,110,.28), transparent 70%),
-    #07080c;
-  color: #c9ccd3;
+    radial-gradient(ellipse 60% 50% at 75% 30%, rgba(110, 120, 160, .28), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 15% 85%, rgba(70, 60, 110, .3), transparent 70%),
+    var(--bg);
+  color: #e6e8ec;
 }
 .theme-design .title {
   font-family: var(--font-space); text-transform: uppercase; letter-spacing: -.01em;
+  font-size: clamp(2.2rem, 6.2vw, 5.4rem);
   background: linear-gradient(180deg, #fff 0%, #d9dce2 35%, #6f7480 50%, #e9ebef 62%, #a2a7b1 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .theme-design .eyebrow,
+.theme-design .meta,
 .theme-design .site-name,
 .theme-design .nav-label,
 .theme-design .portfolio-btn { font-family: var(--font-orbitron); }
-.theme-design .description  { font-family: var(--font-mono); color: rgba(201,204,211,.85); }
-.theme-design .portfolio-btn { color: #fff; border-color: rgba(201,204,211,.6); background: linear-gradient(180deg,#1a1c22,#07080c); }
-.theme-design .portfolio-btn:hover { background: #fff; color: #07080c; }
-.theme-design .photo        { background: #11131a; border: 1px solid rgba(201,204,211,.25); }
+.theme-design .description   { font-family: var(--font-mono); }
+.theme-design .portfolio-btn:hover { background: #fff; color: #06070b; }
+.theme-design .bg-text       { font-family: var(--font-space); font-size: clamp(4rem, 15vw, 16rem); }
+.theme-design .glow-a        { right: 0; top: 10vh; width: 40vw; height: 40vw; background: rgba(140, 150, 190, .22); }
+.theme-design .glow-b        { left: -5vw; bottom: -5vh; width: 30vw; height: 30vw; background: rgba(90, 70, 150, .25); animation-delay: -7s; }
+.theme-design .starburst     { opacity: .9; filter: drop-shadow(0 0 60px rgba(255,255,255,.18)); animation: spin 120s linear infinite; transform-origin: center; }
+.theme-design .photo         { filter: drop-shadow(0 30px 60px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(255,255,255,.12)); }
 
-/* ---------- Page 3: Unity Developer (pixel / retro RPG) ---------- */
+/* ---------- Page 3: Unity Developer — technical dark, cool light ---------- */
 .theme-unity {
-  background: linear-gradient(#7ec8e3 0 72%, #4caf50 72% 76%, #2e7d32 76% 78%, #5d3f24 78%);
-  color: #1b1b2f;
-  image-rendering: pixelated;
+  --bg: #05090f;
+  --accent: #2ee6d6;
+  --text-dim: #a9bfd1;
+  --btn-fg: #05090f; --btn-bg: #2ee6d6; --btn-border: #2ee6d6;
+  --bg-text-stroke: rgba(46, 230, 214, .25); --bg-text-opacity: .5;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 10%, rgba(46, 230, 214, .12), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(30, 80, 120, .35), transparent 70%),
+    var(--bg);
+  color: #e8f1f8;
 }
-.theme-unity .title         { font-family: var(--font-pixel); font-size: clamp(1.5rem, 3.6vw, 2.8rem); line-height: 1.25; }
+.theme-unity .title          { font-family: var(--font-pixel); font-size: clamp(1.4rem, 3.2vw, 2.6rem); line-height: 1.3; color: #fff; text-shadow: 0 0 24px rgba(46,230,214,.45); }
 .theme-unity .eyebrow,
+.theme-unity .meta,
 .theme-unity .site-name,
-.theme-unity .nav-label     { font-family: var(--font-pixel); font-size: 9px; }
-.theme-unity .description   { font-family: var(--font-pixelsans); font-size: clamp(1.05rem, 1.3vw, 1.25rem); line-height: 1.5; }
-.theme-unity .portfolio-btn {
-  font-family: var(--font-pixel); font-size: 10px; letter-spacing: .1em;
-  background: #1b1b2f; color: #fff; border: 0;
-  box-shadow: 0 -4px 0 0 #0a0a0a, 0 4px 0 0 #0a0a0a, -4px 0 0 0 #0a0a0a, 4px 0 0 0 #0a0a0a;
+.theme-unity .nav-label,
+.theme-unity .panel-head     { font-family: var(--font-pixel); font-size: 9px; letter-spacing: .2em; }
+.theme-unity .panel-head     { color: var(--accent); }
+.theme-unity .description    { font-family: var(--font-pixelsans); font-size: clamp(1.05rem, 1.25vw, 1.2rem); line-height: 1.55; }
+.theme-unity .portfolio-btn  { font-family: var(--font-pixel); font-size: 10px; letter-spacing: .12em; box-shadow: 0 0 30px rgba(46,230,214,.35); }
+.theme-unity .portfolio-btn:hover { background: #fff; }
+.theme-unity .bg-text        { font-family: var(--font-pixel); font-size: clamp(4rem, 17vw, 17rem); }
+.theme-unity .glow-a         { left: 50%; bottom: -20vh; width: 60vw; height: 40vw; transform: translateX(-50%); background: rgba(46, 230, 214, .14); animation: none; }
+.theme-unity .glow-b         { right: 0; top: 0; width: 25vw; height: 25vw; background: rgba(60, 90, 200, .18); animation-delay: -4s; }
+.theme-unity .floor {
+  background-image: linear-gradient(rgba(46,230,214,.28) 1px, transparent 1px), linear-gradient(90deg, rgba(46,230,214,.28) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: perspective(600px) rotateX(62deg);
+  transform-origin: top center;
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 70%, transparent);
+  opacity: .5;
 }
-.theme-unity .portfolio-btn:hover { background: #ffd54f; color: #1b1b2f; }
-.theme-unity .photo         { background: #1b1b2f; box-shadow: 0 -4px 0 0 #0a0a0a, 0 4px 0 0 #0a0a0a, -4px 0 0 0 #0a0a0a, 4px 0 0 0 #0a0a0a; }
-.theme-unity .nav-btn span  { border-radius: 0; }
+.theme-unity .horizon        { height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); box-shadow: 0 0 30px var(--accent); opacity: .6; }
+.theme-unity .panel          { border-left: 1px solid rgba(46,230,214,.3); padding-left: 1.5rem; }
+.theme-unity .photo          { filter: drop-shadow(0 30px 60px rgba(0,0,0,.8)) drop-shadow(0 0 40px rgba(46,230,214,.22)); }
+.theme-unity .nav-ring       { border-radius: 0; }
