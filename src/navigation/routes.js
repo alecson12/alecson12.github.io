@@ -7,7 +7,7 @@
  *             down, Design → Unity slides diagonally.
  *
  *               dance (0,0)        design (1,0)
- *                         unity (0.5,1)
+ *               unity (0,1)
  *
  *  NAV_LINKS  decides which arrow buttons each page shows and where they
  *             sit on screen. Edit labels or positions here.
@@ -18,7 +18,7 @@
 export const LAYOUT = {
   dance: { x: 0, y: 0 },
   design: { x: 1, y: 0 },
-  unity: { x: 0.5, y: 1 },
+  unity: { x: 0, y: 1 },
 }
 
 export const NAV_LINKS = {

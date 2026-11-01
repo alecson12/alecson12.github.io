@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import PageShell from '../components/PageShell'
 import Photo from '../components/Photo'
 import PortfolioButton from '../components/PortfolioButton'
@@ -5,45 +7,77 @@ import BgText from '../components/BgText'
 import Reveal from '../components/Reveal'
 import { PAGES } from '../content/pages'
 
-function Starburst({ className = '' }) {
+/**
+ * Tracks the mouse as -1..1 and returns spring-smoothed x/y motion values.
+ * Layers multiply these by a depth factor for parallax.
+ */
+function useParallax() {
+  const mx = useMotionValue(0)
+  const my = useMotionValue(0)
+  useEffect(() => {
+    const onMove = (e) => {
+      mx.set((e.clientX / window.innerWidth) * 2 - 1)
+      my.set((e.clientY / window.innerHeight) * 2 - 1)
+    }
+    window.addEventListener('mousemove', onMove)
+    return () => window.removeEventListener('mousemove', onMove)
+  }, [mx, my])
+  const cfg = { stiffness: 40, damping: 20 }
+  return { x: useSpring(mx, cfg), y: useSpring(my, cfg) }
+}
+
+function Layer({ depth, px, className = '', children, style }) {
+  const x = useTransform(px.x, (v) => v * depth)
+  const y = useTransform(px.y, (v) => v * depth)
   return (
-    <svg viewBox="0 0 100 100" className={className} aria-hidden>
-      <defs>
-        <linearGradient id="chrome-g" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#ffffff" />
-          <stop offset="0.45" stopColor="#c9ccd3" />
-          <stop offset="0.5" stopColor="#4b4f58" />
-          <stop offset="0.6" stopColor="#e9ebef" />
-          <stop offset="1" stopColor="#7d828c" />
-        </linearGradient>
-      </defs>
-      <path d="M50 0 L55 45 L100 50 L55 55 L50 100 L45 55 L0 50 L45 45 Z" fill="url(#chrome-g)" />
-    </svg>
+    <motion.div aria-hidden style={{ x, y, ...style }} className={`pointer-events-none absolute ${className}`}>
+      {children}
+    </motion.div>
   )
 }
 
 /**
  * PAGE 2 — Graphic Design
- * Layout: text LEFT, photo RIGHT framed by a chrome starburst.
- * Mood: deep space, silver chrome, editorial grid.
+ * Layout: text LEFT, photo RIGHT, standing in front of a ringed planet.
+ * World: observing a creative universe from deep space. Nebula, stars,
+ *        a large ringed planet, a distant moon, orbital paths, parallax.
  * Theme styles: .theme-design in styles/themes.css
  * Content: src/content/pages.js → PAGES.design
  */
 export default function DesignPage({ direction, go }) {
   const c = PAGES.design
+  const px = useParallax()
   return (
     <PageShell id="design" index={2} direction={direction} go={go} theme="theme-design">
-      {/* ---- background layers ---- */}
-      <div aria-hidden className="stars absolute inset-0" />
-      <div aria-hidden className="glow glow-a" />
-      <div aria-hidden className="glow glow-b" />
-      <div aria-hidden className="grid-lines absolute inset-0" />
-      <BgText className="left-[-1vw] top-[6vh] leading-[0.8]">
+      {/* ---- deep background: nebula + star fields (slow parallax) ---- */}
+      <Layer depth={-6} px={px} className="inset-[-3%]">
+        <div className="nebula absolute inset-0" />
+        <div className="stars stars-far absolute inset-0" />
+      </Layer>
+      <Layer depth={-14} px={px} className="inset-[-4%]">
+        <div className="stars stars-near absolute inset-0" />
+      </Layer>
+
+      {/* ---- distant galaxy + moon ---- */}
+      <Layer depth={-10} px={px} className="galaxy left-[8%] top-[14%] hidden md:block" />
+      <Layer depth={-18} px={px} className="moon left-[22%] top-[22%]" />
+
+      {/* ---- ringed planet behind the photo ---- */}
+      <Layer depth={-22} px={px} className="planet-wrap right-[-14vw] top-1/2 -translate-y-1/2 md:right-[2vw]">
+        <div className="planet" />
+        <div className="ring" />
+        <div className="ring ring-2" />
+      </Layer>
+
+      {/* ---- orbital paths ---- */}
+      <Layer depth={-8} px={px} className="orbit orbit-1" />
+      <Layer depth={-8} px={px} className="orbit orbit-2" />
+
+      <BgText className="left-[-1vw] top-[5vh] leading-[0.82]">
         KOZMIK
         <br />
         KREATIONS
       </BgText>
-      <Starburst className="starburst absolute right-[-6vw] top-1/2 hidden w-[62vw] -translate-y-1/2 md:block" />
 
       {/* ---- photo ---- */}
       <Photo

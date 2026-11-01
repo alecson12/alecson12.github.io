@@ -2,12 +2,12 @@ import { motion } from 'framer-motion'
 import NavButton from './NavButton'
 import Rails from './Rails'
 import { NAV_LINKS } from '../navigation/routes'
-import { slideVariants, slideTransition } from '../transitions/slide'
+import { slideVariantsFor, slideTransitionFor } from '../transitions/slide'
 import { SITE_NAME } from '../content/pages'
 
 /**
  * Full-viewport wrapper every page uses. Handles:
- *  - the directional slide in / out (via AnimatePresence in App)
+ *  - the directional slide in / out, flavoured per world (transitions/slide.js)
  *  - the site name in the corner and the page number
  *  - shared atmosphere layers (vignette, grain, rails)
  *  - the arrow buttons for this page (from navigation/routes.js)
@@ -18,11 +18,11 @@ export default function PageShell({ id, index, direction, go, theme, children })
     <motion.section
       key={id}
       custom={direction}
-      variants={slideVariants}
+      variants={slideVariantsFor(id)}
       initial="enter"
       animate="center"
       exit="exit"
-      transition={slideTransition}
+      transition={slideTransitionFor(id)}
       className={`page absolute inset-0 overflow-hidden ${theme}`}
       aria-label={id}
     >

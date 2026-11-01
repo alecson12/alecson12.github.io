@@ -21,6 +21,8 @@ export const PAGES = {
   dance: {
     title: 'Dance Artist',
     eyebrow: 'Krump · Open Choreography',
+    // Short labels shown as jagged chips under the description (Dance page only)
+    tags: ['KRUMP', 'FLOPH', 'NITROUS IMAGE CREW', 'BUCK SHOKT'],
     description:
       'Choreographer, performer, and crew member. Placeholder text: write two or three sentences about your dance journey, your style, and what you bring to a stage.',
     buttonLabel: 'View Portfolio',
@@ -42,7 +44,7 @@ export const PAGES = {
 
   unity: {
     title: 'Unity Developer',
-    eyebrow: 'Gameplay · Systems · Pixel Worlds',
+    eyebrow: 'Worldbuilder · Gameplay · Systems',
     description:
       'Gameplay programmer and game designer. Placeholder text: mention the games or prototypes you have built, the systems you enjoy coding, and the genres you love.',
     // The Unity page has a second text column (right side) in the layout.

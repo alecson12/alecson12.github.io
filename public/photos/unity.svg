@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0e2a38"/>
+      <stop offset="0" stop-color="#1a1230"/>
       <stop offset="1" stop-color="#000"/>
     </linearGradient>
     <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#2ee6d6" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="#2ee6d6" stop-opacity="0.9"/>
-      <stop offset="1" stop-color="#2ee6d6" stop-opacity="0"/>
+      <stop offset="0" stop-color="#e8c56a" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#e8c56a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#e8c56a" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <g>
     <circle cx="300" cy="230" r="120" fill="url(#g)"/>
     <path d="M300 360c-170 0-250 110-270 300v240h540V660c-20-190-100-300-270-300z" fill="url(#g)"/>
     <circle cx="300" cy="230" r="120" fill="none" stroke="url(#rim)" stroke-width="3"/>
-    <path d="M300 360c-170 0-250 110-270 300" fill="none" stroke="#2ee6d6" stroke-width="3" stroke-opacity="0.7"/>
+    <path d="M300 360c-170 0-250 110-270 300" fill="none" stroke="#e8c56a" stroke-width="3" stroke-opacity="0.7"/>
   </g>
-  <text x="300" y="860" text-anchor="middle" font-family="monospace" font-size="20" fill="#2ee6d6" opacity="0.6">replace with unity.png (transparent cut-out)</text>
+  <text x="300" y="860" text-anchor="middle" font-family="monospace" font-size="20" fill="#e8c56a" opacity="0.6">replace with unity.png (transparent cut-out)</text>
 </svg>
