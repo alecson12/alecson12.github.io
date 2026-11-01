@@ -1,7 +1,8 @@
 const POSITIONS = {
-  left: 'left-4 top-1/2 -translate-y-1/2 md:left-10',
-  right: 'right-4 top-1/2 -translate-y-1/2 md:right-10',
-  bottom: 'bottom-5 right-4 md:bottom-8 md:left-1/2 md:right-auto md:-translate-x-1/2',
+  // On phones the side arrows drop to the bottom corners so they never sit on the text.
+  left: 'left-4 bottom-5 md:bottom-auto md:left-10 md:top-1/2 md:-translate-y-1/2',
+  right: 'right-4 bottom-5 md:bottom-auto md:right-10 md:top-1/2 md:-translate-y-1/2',
+  bottom: 'bottom-5 left-1/2 -translate-x-1/2 md:bottom-8',
   'top-left': 'top-20 left-4 md:top-8 md:left-[28%]',
   'top-right': 'top-20 right-4 md:top-8 md:right-[28%]',
 }
