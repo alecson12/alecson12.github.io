@@ -78,15 +78,15 @@
 .theme-design .stars-near     { opacity: 1; background-size: 900px 900px, 1000px 1000px, 850px 850px, 1100px 1100px, 950px 950px, 800px 800px, 1050px 1050px, 980px 980px; animation-delay: -4s; }
 .theme-design .shooting-star  { position: absolute; top: 18%; left: 62%; width: 160px; height: 1px; background: linear-gradient(90deg, #fff, transparent); transform: rotate(-28deg); opacity: 0; animation: shoot 11s ease-out infinite; pointer-events: none; }
 .theme-design .earth-wrap     { height: 30vh; }
-.theme-design .earth          { position: absolute; left: 50%; top: 30%; width: 320vw; height: 320vw; translate: -50% 0; border-radius: 999px;
+.theme-design .earth          { position: absolute; left: 50%; top: 36%; width: 190vw; height: 190vw; translate: -50% 0; border-radius: 999px;
   background:
     radial-gradient(ellipse 18% 6% at 36% 1.5%, rgba(110,150,90,.5), transparent 70%),
     radial-gradient(ellipse 14% 4% at 62% 2%, rgba(150,130,80,.4), transparent 70%),
     radial-gradient(ellipse 60% 5% at 50% .5%, rgba(255,255,255,.4), transparent 70%),
     radial-gradient(ellipse 100% 18% at 50% 0%, #2a6fb8 0%, #123f7a 20%, #081d3f 45%, #03091a 75%);
   box-shadow: inset 0 20px 40px rgba(255,255,255,.08); }
-.theme-design .earth-rim      { position: absolute; left: 50%; top: 30%; width: 320vw; height: 320vw; translate: -50% 0; border-radius: 999px; box-shadow: 0 -1px 0 #fff, 0 -5px 16px rgba(180,220,255,.95), 0 -16px 44px rgba(90,160,255,.6), 0 -44px 110px rgba(40,100,220,.3); pointer-events: none; }
-.theme-design .atmosphere     { position: absolute; left: 50%; top: 24%; width: 324vw; height: 324vw; translate: -50% 0; border-radius: 999px; background: radial-gradient(ellipse 100% 4% at 50% 0%, rgba(120,190,255,.5), rgba(60,120,220,.12) 60%, transparent 100%); filter: blur(26px); }
+.theme-design .earth-rim      { position: absolute; left: 50%; top: 36%; width: 190vw; height: 190vw; translate: -50% 0; border-radius: 999px; box-shadow: 0 -1px 0 #fff, 0 -6px 18px rgba(190,225,255,1), 0 -20px 50px rgba(100,170,255,.7), 0 -60px 140px rgba(40,110,230,.35); pointer-events: none; }
+.theme-design .atmosphere     { position: absolute; left: 50%; top: 28%; width: 194vw; height: 194vw; translate: -50% 0; border-radius: 999px; background: radial-gradient(ellipse 100% 7% at 50% 0%, rgba(120,190,255,.55), rgba(60,120,220,.15) 60%, transparent 100%); filter: blur(28px); }
 .theme-design .title          { font-family: var(--font-space); text-transform: uppercase; letter-spacing: .02em; font-size: clamp(2.1rem, 5.8vw, 5rem); color: #fff; text-shadow: 0 0 40px rgba(159,211,255,.25); }
 .theme-design .eyebrow,
 .theme-design .meta,
