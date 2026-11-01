@@ -69,7 +69,7 @@ public/
 ## How navigation works
 
 - `useNavigation` keeps the current page id (`dance`, `design`, `unity`) and the direction of the last move.
-- Direction comes from `ORDER` in `routes.js`: moving to a page further right in the list slides left, moving back slides right.
+- Direction comes from `LAYOUT` in `routes.js`, which places the pages on a 2D grid (Dance top-left, Design top-right, Unity bottom-centre). The slide follows the vector between the two pages: horizontal, vertical or diagonal. Clicks during a slide are ignored.
 - `App.jsx` renders only the current page inside `AnimatePresence`. When the page changes, the old one animates out and the new one animates in at the same time, so there is never a blank frame.
 - The URL hash is kept in sync (`/#design`), so each page is linkable and the browser back button works. Left/Right arrow keys also move between pages.
 
