@@ -6,7 +6,7 @@ const items = [
 
 export default function SideNav({ active, onJump }) {
   return (
-    <nav className="fixed right-4 top-1/2 z-50 -translate-y-1/2 flex flex-col gap-4 md:right-8">
+    <nav className="fixed right-2 top-1/2 z-50 -translate-y-1/2 flex flex-col gap-4 md:right-8">
       {items.map((it) => {
         const on = active === it.id
         return (

@@ -28,8 +28,7 @@ export default function Dance() {
           className={`absolute ${s.pos} fill-p5-cream drop-shadow-[4px_4px_0_#0a0a0a]`}
           style={{ width: s.size, height: s.size }}
           initial={{ rotate: s.rot, scale: 0 }}
-          whileInView={{ scale: 1 }}
-          animate={{ rotate: [s.rot, s.rot + 15, s.rot] }}
+          animate={{ scale: 1, rotate: [s.rot, s.rot + 15, s.rot] }}
           transition={{ duration: 4, repeat: Infinity }}
         >
           <path d="M12 0l3 9h9l-7 5 3 10-8-6-8 6 3-10-7-5h9z" />
@@ -39,7 +38,7 @@ export default function Dance() {
       <div className="relative z-10 mx-auto flex min-h-dvh max-w-6xl flex-col justify-center px-6 py-24 md:px-12">
         <motion.p
           initial={{ x: -40, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
           className="p5-tag inline-block w-fit -rotate-2 bg-p5-black px-4 py-2 font-bangers text-lg tracking-widest text-p5-cream md:text-2xl"
         >
@@ -48,7 +47,7 @@ export default function Dance() {
 
         <motion.h2
           initial={{ y: 40, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="p5-shadow mt-4 font-persona text-[20vw] leading-[0.82] uppercase md:text-[11rem]"
         >
@@ -58,7 +57,7 @@ export default function Dance() {
 
         <motion.p
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="mt-8 max-w-md font-mono text-sm leading-relaxed text-p5-cream/90 md:text-base"
         >
@@ -71,7 +70,7 @@ export default function Dance() {
             <motion.span
               key={t}
               initial={{ scale: 0, rotate: -10 }}
-              whileInView={{ scale: 1, rotate: i % 2 ? 2 : -2 }}
+              animate={{ scale: 1, rotate: i % 2 ? 2 : -2 }}
               transition={{ delay: 0.35 + i * 0.06, type: 'spring' }}
               className={`${i % 2 ? 'p5-tag-alt bg-p5-cream text-p5-black' : 'p5-tag bg-p5-black text-p5-cream'} px-3 py-1 font-bangers text-sm tracking-wider`}
             >
@@ -85,7 +84,7 @@ export default function Dance() {
           target="_blank"
           rel="noreferrer"
           initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
           whileHover={{ rotate: -3, scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
