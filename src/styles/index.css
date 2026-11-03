@@ -9,6 +9,7 @@
   --font-fantasy: "Cinzel", "Trajan Pro", serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-bangers: "Bangers", "Impact", sans-serif;
+  --font-pixel: "Press Start 2P", monospace;
 }
 
 html, body, #root { height: 100%; }
@@ -101,5 +102,5 @@ body {
 @keyframes twinkle { 0%,100% { opacity: .45;} 50% { opacity: .8;} }
 
 @media (prefers-reduced-motion: reduce) {
-  .glow, .node, .stars, .star, .cloud, .runner, .sprite, .shooting-star { animation: none !important; }
+  .glow, .node, .stars, .star, .shooting-star, .drift-sky, .sun-glow, .heave-far, .heave-waves, .bob-slow { animation: none !important; }
 }

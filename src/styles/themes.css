@@ -103,81 +103,62 @@
 .theme-design .grain          { opacity: .05; }
 
 /* =====================================================================
-   WORLD 3 — UNITY DEVELOPER · bright HD-2D JRPG overworld
-   Blue sky, soft clouds, far mountains + castle, green meadow, blurred
-   foreground flowers, a pixel party running. Text in JRPG windows.
+   WORLD 3 — UNITY DEVELOPER · the pixel Great Wave start screen
+   Three painted layers (sky, mountains, waves) in motion, the pixel
+   wordmark in the sky, the cutout portrait in front of the sea.
+   Palette: sky blue #1696fa, red #d9261c, beige #e8d9b5.
    ===================================================================== */
 .theme-unity {
-  --bg: #4b8f3a;
-  --accent: #ffd36b;
-  --text-dim: #e9e4d6;
-  --btn-fg: #1a1230; --btn-bg: linear-gradient(180deg, #ffe6a0, #d8a640); --btn-border: #fff2c4;
-  background: #8fcbf0;
-  color: #fffaf0;
+  --bg: #1696fa;
+  --accent: #d9261c;
+  --text-dim: #eef0ea;
+  --btn-fg: #1b1b2f; --btn-bg: #e8d9b5; --btn-border: #1b1b2f;
+  background: #1696fa;
+  color: #eef0ea;
 }
-.theme-unity .sky             { background: linear-gradient(180deg, #2e7fd8 0%, #6fb6ec 40%, #b9e2f7 70%, #e3f3fb 100%); }
-.theme-unity .sun             { position: absolute; left: 70%; top: 6%; width: 28vw; height: 28vw; border-radius: 999px; background: radial-gradient(circle, rgba(255,250,220,.9) 0%, rgba(255,240,190,.35) 25%, transparent 60%); filter: blur(10px); pointer-events: none; }
-.theme-unity .cloud           { position: absolute; border-radius: 999px; background: #fff; filter: blur(14px); opacity: .9; pointer-events: none; animation: cloud-drift 60s linear infinite alternate; }
-.theme-unity .cloud::before,
-.theme-unity .cloud::after    { content: ""; position: absolute; border-radius: 999px; background: #fff; }
-.theme-unity .cloud-1         { left: 6%; top: 10%; width: 22vw; height: 7vw; }
-.theme-unity .cloud-1::before { left: 18%; top: -60%; width: 40%; height: 150%; }
-.theme-unity .cloud-1::after  { left: 50%; top: -40%; width: 36%; height: 130%; }
-.theme-unity .cloud-2         { left: 42%; top: 4%; width: 18vw; height: 5vw; opacity: .8; animation-duration: 80s; animation-delay: -30s; }
-.theme-unity .cloud-2::before { left: 30%; top: -70%; width: 40%; height: 160%; }
-.theme-unity .cloud-3         { left: 74%; top: 22%; width: 26vw; height: 6vw; opacity: .75; animation-duration: 95s; animation-delay: -50s; }
-.theme-unity .cloud-3::before { left: 10%; top: -50%; width: 35%; height: 140%; }
-.theme-unity .cloud-3::after  { left: 55%; top: -80%; width: 38%; height: 170%; }
-.theme-unity .mountains-far   { color: #6f93b8; opacity: .8; filter: blur(2px); }
-.theme-unity .mountains-near  { color: #3f7a5a; filter: blur(1px); }
-.theme-unity .castle          { color: #4a5a78; filter: blur(.8px) drop-shadow(0 0 20px rgba(255,255,255,.4)); }
-.theme-unity .haze            { background: linear-gradient(to top, rgba(224,243,251,.9), transparent); }
-.theme-unity .hill            { position: absolute; left: -15%; width: 130%; border-radius: 50% 50% 0 0 / 100% 100% 0 0; pointer-events: none; }
-.theme-unity .hill-back       { bottom: 0; height: 44vh; background: linear-gradient(180deg, #7fd05a 0%, #4fa83f 50%, #3a8a34 100%); }
-.theme-unity .hill-front      { bottom: -10vh; left: -25%; width: 150%; height: 36vh; background: linear-gradient(180deg, #8fdc62 0%, #58b545 45%, #3f9339 100%); box-shadow: 0 -20px 60px rgba(40,100,30,.25); }
-.theme-unity .grass-blades    { position: absolute; left: 0; right: 0; bottom: 0; height: 30vh; background-image: repeating-linear-gradient(100deg, transparent 0 14px, rgba(255,255,255,.07) 14px 16px), repeating-linear-gradient(80deg, transparent 0 22px, rgba(0,60,0,.08) 22px 24px); mask-image: linear-gradient(to top, #000 40%, transparent); pointer-events: none; }
-.theme-unity .flowers {
-  background-image:
-    radial-gradient(circle at 8% 70%, #ff7fb0 0 14px, transparent 15px),
-    radial-gradient(circle at 12% 62%, #ffd3e4 0 6px, transparent 7px),
-    radial-gradient(circle at 22% 85%, #ffffff 0 10px, transparent 11px),
-    radial-gradient(circle at 30% 75%, #8ab4ff 0 8px, transparent 9px),
-    radial-gradient(circle at 48% 90%, #ffe066 0 9px, transparent 10px),
-    radial-gradient(circle at 66% 82%, #ff9ac2 0 12px, transparent 13px),
-    radial-gradient(circle at 80% 72%, #ffffff 0 7px, transparent 8px),
-    radial-gradient(circle at 92% 88%, #8ab4ff 0 11px, transparent 12px);
-  filter: blur(6px); opacity: .9; pointer-events: none;
-}
-.theme-unity .runner          { position: absolute; bottom: 0; left: -120px; animation: run-across 22s linear infinite; }
-.theme-unity .sprite          { animation: hop .45s steps(2) infinite; filter: drop-shadow(0 6px 4px rgba(0,40,0,.35)); image-rendering: pixelated; }
-.theme-unity .photo-ground    { width: 44vw; height: 8vh; background: radial-gradient(ellipse at 50% 100%, rgba(20,60,10,.45), transparent 70%); filter: blur(8px); }
-.theme-unity .photo           { filter: drop-shadow(0 20px 40px rgba(10,40,10,.55)); }
-.theme-unity .window          { background: rgba(14, 18, 44, .78); border: 2px solid #ffe6a0; outline: 1px solid rgba(14,18,44,.9); outline-offset: 2px; box-shadow: 0 20px 60px rgba(0,30,0,.35), inset 0 0 0 1px rgba(255,255,255,.08); padding: 1.6rem 1.8rem; backdrop-filter: blur(6px); }
+.theme-unity .pixelated       { image-rendering: pixelated; }
+.theme-unity .photo           { filter: drop-shadow(0 18px 28px rgba(5,25,60,.45)); }
+.theme-unity .photo img       { mask-image: none; -webkit-mask-image: none; }
+.theme-unity .photo-ground    { width: 30vw; height: 6vh; background: radial-gradient(ellipse at 50% 100%, rgba(5,25,60,.5), transparent 70%); filter: blur(8px); }
 .theme-unity .eyebrow,
 .theme-unity .meta,
 .theme-unity .site-name,
 .theme-unity .nav-label,
-.theme-unity .lore-head,
-.theme-unity .portfolio-btn   { font-family: var(--font-fantasy); }
-.theme-unity .site-name       { color: #1a1230; }
-.theme-unity .eyebrow         { letter-spacing: .4em; color: #ffd36b; font-size: 10px; }
-.theme-unity .title           { font-family: var(--font-fantasy); font-weight: 700; font-size: clamp(1.9rem, 3.6vw, 3.1rem); line-height: 1.1; color: #fff7e3; text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 24px rgba(255,211,107,.35); }
-.theme-unity .ornament        { width: 8rem; height: 10px; background: linear-gradient(90deg, transparent, #ffd36b 20%, #ffd36b 80%, transparent) center / 100% 1px no-repeat, radial-gradient(circle, #ffd36b 2.5px, transparent 3px) center / 10px 10px no-repeat; }
-.theme-unity .description     { font-family: var(--font-serif); font-size: clamp(1.02rem, 1.15vw, 1.15rem); line-height: 1.55; color: #f3eee0; }
-.theme-unity .lore-head       { font-size: 10px; letter-spacing: .4em; text-transform: uppercase; color: #ffd36b; }
-.theme-unity .portfolio-btn   { font-size: 11px; letter-spacing: .3em; box-shadow: 0 0 30px rgba(255,211,107,.35), inset 0 1px 0 rgba(255,255,255,.6); }
-.theme-unity .portfolio-btn:hover { background: #fff; }
-.theme-unity .meta            { color: #1a1230; opacity: .7; }
-.theme-unity .nav-btn         { color: #fff; }
-.theme-unity .nav-ring        { border-radius: 999px; background: rgba(14,18,44,.55); border-color: rgba(255,230,160,.7); }
-.theme-unity .rail            { background: linear-gradient(to bottom, transparent, rgba(255,255,255,.7) 30%, rgba(255,255,255,.7) 70%, transparent); opacity: .5; }
-.theme-unity .node            { background: #fff; box-shadow: 0 0 14px #fff; }
-.theme-unity .vignette        { background: radial-gradient(ellipse 85% 75% at 50% 50%, transparent 60%, rgba(20,40,80,.35) 100%); }
-.theme-unity .grain           { opacity: .05; }
+.theme-unity .portfolio-btn   { font-family: var(--font-pixel); }
+.theme-unity .eyebrow         { font-size: 9px; letter-spacing: .15em; color: #eef0ea; text-shadow: 0 2px 0 rgba(5,15,40,.6); }
+.theme-unity .site-name       { color: #eef0ea; text-shadow: 0 2px 0 rgba(5,15,40,.5); }
+.theme-unity .portfolio-btn   { font-size: 10px; letter-spacing: .12em; border-width: 3px; box-shadow: 6px 6px 0 #1b1b2f; }
+.theme-unity .portfolio-btn:hover { background: #d9261c; color: #fff; }
+.theme-unity .nav-btn         { color: #eef0ea; }
+.theme-unity .nav-ring        { border-radius: 0; border: 3px solid #1b1b2f; background: #e8d9b5; color: #1b1b2f; backdrop-filter: none; box-shadow: 4px 4px 0 #1b1b2f; }
+.theme-unity .nav-btn:hover .nav-ring { background: #d9261c; color: #fff; box-shadow: 4px 4px 0 #1b1b2f; }
+.theme-unity .nav-label       { text-shadow: 0 2px 0 rgba(5,15,40,.6); }
+.theme-unity .rails           { display: none; }
+.theme-unity .vignette        { background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 70%, rgba(5,25,60,.25) 100%); }
+.theme-unity .grain           { opacity: .04; }
 
 /* ---------- world animations ---------- */
 @keyframes star-spin    { 0%,100% { transform: rotate(0deg) scale(1);} 50% { transform: rotate(25deg) scale(1.15);} }
 @keyframes shoot        { 0%, 92% { opacity: 0; transform: rotate(-28deg) translateX(0);} 94% { opacity: 1;} 100% { opacity: 0; transform: rotate(-28deg) translateX(-50vw);} }
-@keyframes cloud-drift  { from { transform: translateX(-6vw);} to { transform: translateX(8vw);} }
-@keyframes run-across   { from { transform: translateX(0);} to { transform: translateX(calc(100vw + 240px));} }
-@keyframes hop          { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-6px);} }
+
+/* The Start artwork in motion. All transform/opacity only; amplitudes are
+   fractions of each layer box, kept well inside the spare margins. */
+@keyframes drift-sky {
+  0%, 100% { transform: translate(-1.1%, 0); }
+  30%      { transform: translate(-0.2%, 0.35%); }
+  50%      { transform: translate(1.1%, 0.15%); }
+  75%      { transform: translate(0.3%, -0.3%); }
+}
+.drift-sky { animation: drift-sky 48s ease-in-out infinite; animation-delay: -12s; }
+@keyframes sun-glow { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.5; } }
+.sun-glow { background: radial-gradient(circle, rgba(255,214,120,0.5) 0 28%, rgba(255,214,120,0) 68%); animation: sun-glow 8s ease-in-out infinite; }
+@keyframes heave-far { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(0.25%, 0.7%); } }
+.heave-far { animation: heave-far 13s ease-in-out infinite; animation-delay: -5s; }
+@keyframes heave-waves {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  40%      { transform: translate(-0.3%, 0.5%) rotate(-0.15deg); }
+  70%      { transform: translate(0.25%, -0.35%) rotate(0.12deg); }
+}
+.heave-waves { animation: heave-waves 11s ease-in-out infinite; }
+@keyframes bob-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.bob-slow { animation: bob-slow 9s ease-in-out infinite; }

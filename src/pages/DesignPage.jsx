@@ -1,39 +1,9 @@
-import { useEffect } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import PageShell from '../components/PageShell'
 import Photo from '../components/Photo'
 import PortfolioButton from '../components/PortfolioButton'
 import Reveal from '../components/Reveal'
+import { useParallax, Layer } from '../components/Parallax'
 import { PAGES } from '../content/pages'
-
-/**
- * Tracks the mouse as -1..1 and returns spring-smoothed x/y motion values.
- * Layers multiply these by a depth factor for parallax.
- */
-function useParallax() {
-  const mx = useMotionValue(0)
-  const my = useMotionValue(0)
-  useEffect(() => {
-    const onMove = (e) => {
-      mx.set((e.clientX / window.innerWidth) * 2 - 1)
-      my.set((e.clientY / window.innerHeight) * 2 - 1)
-    }
-    window.addEventListener('mousemove', onMove)
-    return () => window.removeEventListener('mousemove', onMove)
-  }, [mx, my])
-  const cfg = { stiffness: 40, damping: 20 }
-  return { x: useSpring(mx, cfg), y: useSpring(my, cfg) }
-}
-
-function Layer({ depth, px, className = '', children, style }) {
-  const x = useTransform(px.x, (v) => v * depth)
-  const y = useTransform(px.y, (v) => v * depth)
-  return (
-    <motion.div aria-hidden style={{ x, y, ...style }} className={`pointer-events-none absolute ${className}`}>
-      {children}
-    </motion.div>
-  )
-}
 
 /**
  * PAGE 2 — Graphic Design

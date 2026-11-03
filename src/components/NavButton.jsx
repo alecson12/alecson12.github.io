@@ -3,8 +3,8 @@ const POSITIONS = {
   left: 'left-4 bottom-5 md:bottom-auto md:left-10 md:top-1/2 md:-translate-y-1/2',
   right: 'right-4 bottom-5 md:bottom-auto md:right-10 md:top-1/2 md:-translate-y-1/2',
   bottom: 'bottom-5 left-1/2 -translate-x-1/2 md:bottom-8',
-  'top-left': 'top-20 left-4 md:top-8 md:left-[28%]',
-  'top-right': 'top-20 right-4 md:top-8 md:right-[28%]',
+  'top-left': 'top-20 left-4 md:top-8 md:left-[36%]',
+  'top-right': 'top-20 right-4 md:top-8 md:right-[36%]',
 }
 
 const CHEVRON = {
