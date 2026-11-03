@@ -51,7 +51,7 @@ export const PAGES = {
     secondaryText:
       'Placeholder text for the right column: tools you use (C#, Unity, shaders, Tilemaps), or a short list of shipped projects and jams.',
     buttonLabel: 'View Portfolio',
-    portfolioLink: '#unity-portfolio-coming-soon',
+    portfolioLink: 'https://almarga.github.io/unitydeveloper-portfolio/',
     photo: '/media/unity/alecson-unity-developer-white.webp',
     // Pixel wordmark shown in the sky instead of a text title (transparent webp)
     wordmark: '/media/unity/wordmark.webp',
