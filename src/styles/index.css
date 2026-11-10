@@ -29,14 +29,15 @@ body {
                 top-left and the services and buttons slide in
      is-dim     another door is open: a narrow strip with the title
    ===================================================================== */
-:root { --topbar: 118px; --ease: cubic-bezier(.22, 1, .36, 1); --grow: .85s; }
+:root { --topbar: 108px; --ease: cubic-bezier(.22, 1, .36, 1); --grow: .85s; }
 
 /* ---------- the header ---------- */
-.topbar      { height: var(--topbar); }
+.topbar      { height: var(--topbar); background: #0a0a0c; border-bottom: 1px solid rgba(255,255,255,.08); }
+.panels      { top: var(--topbar); }
 .site-name   { color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.45); font-family: var(--font-mono); }
 .contact-btn { color: #fff; background: rgba(0,0,0,.38); border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: .55rem 1.1rem; backdrop-filter: blur(8px); font-family: var(--font-mono); transition: background .3s, border-color .3s; cursor: pointer; }
 .contact-btn:hover { background: rgba(0,0,0,.6); border-color: #fff; }
-.question    { margin: 10px auto 0; padding: 0 16px; text-align: center; font-family: var(--font-persona); font-weight: 400; text-transform: uppercase; color: #fff; font-size: clamp(1.25rem, 3.1vw, 2.5rem); letter-spacing: .08em; line-height: 1.05; text-shadow: 0 2px 0 rgba(0,0,0,.35), 0 8px 30px rgba(0,0,0,.55); }
+.question    { margin: 6px auto 0; padding: 0 16px; text-align: center; font-family: var(--font-persona); font-weight: 400; text-transform: uppercase; color: #fff; font-size: clamp(1.25rem, 3.1vw, 2.5rem); letter-spacing: .08em; line-height: 1.05; text-shadow: 0 2px 0 rgba(0,0,0,.35), 0 8px 30px rgba(0,0,0,.55); }
 .hint        { color: rgba(255,255,255,.7); text-shadow: 0 1px 2px rgba(0,0,0,.4); font-family: var(--font-mono); animation: hint 2.4s ease-in-out infinite; }
 @keyframes hint { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
 
@@ -67,7 +68,8 @@ body {
 /* the copy: centred and big when idle, top-left when open, small when dim */
 .copy  { position: absolute; z-index: 3; left: 8%; right: 8%; top: 50%; translate: 0 -50%; display: flex; flex-direction: column; align-items: center; text-align: center; pointer-events: none;
          transition: top var(--grow) var(--ease), translate var(--grow) var(--ease), left var(--grow) var(--ease), right var(--grow) var(--ease); }
-.is-active .copy { left: 6%; right: 44%; top: calc(var(--topbar) + 8px); translate: 0 0; align-items: flex-start; text-align: left; }
+.is-active .copy { left: 5%; right: 44%; top: 5%; translate: 0 0; align-items: flex-start; text-align: left; padding: 26px 30px 28px; border-radius: 16px; background: var(--card, transparent); border: 1px solid var(--card-line, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.copy { transition: top var(--grow) var(--ease), translate var(--grow) var(--ease), left var(--grow) var(--ease), right var(--grow) var(--ease), background .5s ease, padding var(--grow) var(--ease); }
 .is-dim .copy    { left: 6%; right: 6%; }
 .panel.is-dim .eyebrow, .panel.is-dim .mark { display: none !important; }
 .more  { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .6s var(--ease), opacity .3s ease; }
@@ -90,21 +92,19 @@ body {
 /* ---------- phones: the doors stack; a solid header above them ---------- */
 @media (max-width: 767px) {
   :root { --topbar: 124px; }
-  .topbar  { background: #0a0a0c; border-bottom: 1px solid rgba(255,255,255,.08); }
   .question { font-size: 1.3rem; margin-top: 8px; }
-  .panels  { top: var(--topbar); }
   /* the open door takes the screen; the closed ones become thin title bars */
   .panel.is-active { flex: 1 1 auto; }
   .panel.is-dim    { flex: 0 0 58px; transition: flex-basis var(--grow) var(--ease); }
   .copy    { left: 20px; right: 20px; }
-  .is-active .copy { left: 20px; right: 6%; top: 18px; }
-  .is-active .pitch, .is-active .chips, .is-active .actions { max-width: 60%; }
+  .is-active .copy { left: 14px; right: 14px; top: 14px; padding: 18px 18px 20px; }
+  .is-active .pitch, .is-active .chips, .is-active .actions { max-width: 62%; }
   .is-dim .copy  { left: 16px; right: 16px; }
   .is-dim .title { display: flex; align-items: baseline; justify-content: center; gap: .4em; }
   .is-dim .title-top, .is-dim .title-big { font-size: 1.05rem !important; letter-spacing: .1em !important; line-height: 1; text-shadow: none !important; margin: 0 !important; }
   .is-dim .title-img img { width: 118px !important; }
   .photo   { left: 76%; width: 54%; height: 94%; }
-  .is-active .photo { left: 80%; width: 52%; height: 72%; }
+  .is-active .photo { left: 80%; width: 52%; height: 60%; z-index: 4; }
   .is-active .more { max-height: 70vh; }
   .chip    { padding: .45rem .7rem; font-size: 10px; }
   .chips   { gap: 6px; margin-top: 14px; }
