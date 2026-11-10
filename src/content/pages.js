@@ -69,8 +69,16 @@ export const ROLES = [
     title: 'Unity Developer',
     eyebrow: 'Game UI & Systems',
     pitch: 'I build the screens players live in.',
-    // From the What I do section of the Unity portfolio
-    services: ['Unity game development', 'Game UI / UX implementation', 'C# programming', 'Game systems', 'Gameplay programming', 'Bug fixing & optimization'],
+    // From the What I do section of the Unity portfolio, with its pixel icons
+    // (controller · hud · code · gear · star · trophy)
+    services: [
+      { name: 'Unity Game Development', icon: 'controller' },
+      { name: 'Game UI / UX Implementation', icon: 'hud' },
+      { name: 'C# Programming', icon: 'code' },
+      { name: 'Game Systems', icon: 'gear' },
+      { name: 'Gameplay Programming', icon: 'star' },
+      { name: 'Bug Fixing & Optimization', icon: 'trophy' },
+    ],
     availability: 'Open to contract and part-time work',
     hireLabel: 'Hire me',
     hireSubject: 'Unity work — Alecson Gantica',

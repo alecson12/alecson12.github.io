@@ -75,11 +75,14 @@ export default function HireSheet({ open, role, onClose }) {
 
             {role && (
               <ul className="chips" aria-label="What for">
-                {role.services.map((s) => (
-                  <li key={s} className="chip">
-                    {s}
-                  </li>
-                ))}
+                {role.services.map((s) => {
+                  const name = typeof s === 'string' ? s : s.name
+                  return (
+                    <li key={name} className="chip">
+                      {name}
+                    </li>
+                  )
+                })}
               </ul>
             )}
             {role?.availability && <p className="avail">{role.availability}</p>}

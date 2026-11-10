@@ -1,4 +1,5 @@
 import World from './World'
+import PixelIcon from './PixelIcon'
 
 /**
  * One door of the character select.
@@ -56,11 +57,19 @@ export default function Panel({ role, state, touch, onActivate, onHire }) {
         <div className="more" aria-hidden={!open}>
           <p className="pitch">{role.pitch}</p>
           <ul className="chips" aria-label="Hire me for">
-            {role.services.map((s) => (
-              <li key={s} className="chip">
-                {s}
-              </li>
-            ))}
+            {role.services.map((s) => {
+              const name = typeof s === 'string' ? s : s.name
+              return (
+                <li key={name} className={s.icon ? 'chip chip-card' : 'chip'}>
+                  {s.icon && (
+                    <span className="chip-icon">
+                      <PixelIcon name={s.icon} size={18} />
+                    </span>
+                  )}
+                  {name}
+                </li>
+              )
+            })}
           </ul>
           <div className="actions">
             <button

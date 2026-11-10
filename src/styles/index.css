@@ -32,12 +32,15 @@ body {
 :root { --topbar: 108px; --ease: cubic-bezier(.22, 1, .36, 1); --grow: .85s; }
 
 /* ---------- the header ---------- */
-.topbar      { height: var(--topbar); background: #0a0a0c; border-bottom: 1px solid rgba(255,255,255,.08); }
+.topbar      { height: var(--topbar); background: linear-gradient(180deg, #0c0c10 0%, #121218 100%); }
+.topbar::after  { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55) 25%, rgba(255,255,255,.55) 75%, transparent); }
+.topbar::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 120% at 50% 100%, rgba(255,255,255,.06), transparent 70%); }
 .panels      { top: var(--topbar); }
-.site-name   { color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.45); font-family: var(--font-mono); }
-.contact-btn { color: #fff; background: rgba(0,0,0,.38); border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: .55rem 1.1rem; backdrop-filter: blur(8px); font-family: var(--font-mono); transition: background .3s, border-color .3s; cursor: pointer; }
-.contact-btn:hover { background: rgba(0,0,0,.6); border-color: #fff; }
-.question    { margin: 6px auto 0; padding: 0 16px; text-align: center; font-family: var(--font-persona); font-weight: 400; text-transform: uppercase; color: #fff; font-size: clamp(1.25rem, 3.1vw, 2.5rem); letter-spacing: .08em; line-height: 1.05; text-shadow: 0 2px 0 rgba(0,0,0,.35), 0 8px 30px rgba(0,0,0,.55); }
+.site-name   { color: rgba(255,255,255,.85); font-family: var(--font-space); font-size: 11px; letter-spacing: .4em; }
+.contact-btn { color: #fff; background: transparent; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; padding: .6rem 1.25rem; font-family: var(--font-space); font-size: 10px; letter-spacing: .3em; transition: background .3s, color .3s, border-color .3s; cursor: pointer; }
+.contact-btn:hover { background: #fff; color: #0c0c10; border-color: #fff; }
+.question    { margin: 4px auto 0; padding: 0 16px; text-align: center; font-family: var(--font-persona); font-weight: 400; text-transform: uppercase; font-size: clamp(1.25rem, 3.1vw, 2.5rem); letter-spacing: .1em; line-height: 1.05;
+               background: linear-gradient(180deg, #ffffff 0%, #e9e9ef 55%, #b9b9c6 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 0 rgba(0,0,0,.4)); }
 .hint        { color: rgba(255,255,255,.7); text-shadow: 0 1px 2px rgba(0,0,0,.4); font-family: var(--font-mono); animation: hint 2.4s ease-in-out infinite; }
 @keyframes hint { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
 
@@ -68,8 +71,7 @@ body {
 /* the copy: centred and big when idle, top-left when open, small when dim */
 .copy  { position: absolute; z-index: 3; left: 8%; right: 8%; top: 50%; translate: 0 -50%; display: flex; flex-direction: column; align-items: center; text-align: center; pointer-events: none;
          transition: top var(--grow) var(--ease), translate var(--grow) var(--ease), left var(--grow) var(--ease), right var(--grow) var(--ease); }
-.is-active .copy { left: 5%; right: 44%; top: 5%; translate: 0 0; align-items: flex-start; text-align: left; padding: 26px 30px 28px; border-radius: 16px; background: var(--card, transparent); border: 1px solid var(--card-line, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-.copy { transition: top var(--grow) var(--ease), translate var(--grow) var(--ease), left var(--grow) var(--ease), right var(--grow) var(--ease), background .5s ease, padding var(--grow) var(--ease); }
+.is-active .copy { left: 6%; right: 44%; top: 6%; translate: 0 0; align-items: flex-start; text-align: left; }
 .is-dim .copy    { left: 6%; right: 6%; }
 .panel.is-dim .eyebrow, .panel.is-dim .mark { display: none !important; }
 .more  { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .6s var(--ease), opacity .3s ease; }
@@ -82,11 +84,13 @@ body {
 .pitch  { margin: 22px 0 0; font-size: clamp(1rem, 1.6cqw, 1.25rem); line-height: 1.6; max-width: 30em; opacity: .92; }
 .chips  { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .chip   { font-size: 11px; line-height: 1; padding: .55rem .85rem; white-space: nowrap; border: 1px solid color-mix(in srgb, currentColor 40%, transparent); border-radius: 999px; background: transparent; }
+/* the Unity site's service card: a dark panel with a pixel icon in a square */
+.chip-card { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; white-space: normal; padding: 12px; border-radius: 12px; min-width: 128px; max-width: 160px; flex: 1 1 128px; line-height: 1.25; }
+.chip-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 6px; }
 .actions{ display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
 .btn    { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; padding: .95rem 1.5rem; border: 1px solid transparent; transition: background .3s, color .3s, border-color .3s, filter .3s, transform .3s; }
 .btn:active { transform: scale(.98); }
-.btn-portfolio { background: transparent; border-color: color-mix(in srgb, currentColor 45%, transparent); }
-.btn-portfolio:hover { border-color: currentColor; }
+
 .avail  { margin: 22px 0 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
 
 /* ---------- phones: the doors stack; a solid header above them ---------- */
@@ -97,7 +101,7 @@ body {
   .panel.is-active { flex: 1 1 auto; }
   .panel.is-dim    { flex: 0 0 58px; transition: flex-basis var(--grow) var(--ease); }
   .copy    { left: 20px; right: 20px; }
-  .is-active .copy { left: 14px; right: 14px; top: 14px; padding: 18px 18px 20px; }
+  .is-active .copy { left: 20px; right: 20px; top: 16px; }
   .is-active .pitch, .is-active .chips, .is-active .actions { max-width: 62%; }
   .is-dim .copy  { left: 16px; right: 16px; }
   .is-dim .title { display: flex; align-items: baseline; justify-content: center; gap: .4em; }
