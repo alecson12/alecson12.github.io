@@ -16,68 +16,121 @@ body {
   margin: 0;
   background: #000;
   color: #fff;
-  overflow: hidden;              /* the stage handles everything; no page scroll */
+  overflow: hidden;              /* one screen; nothing scrolls */
   -webkit-font-smoothing: antialiased;
+  font-family: var(--font-manrope);
 }
 
-/* ---------- shared element styles (recoloured per theme in themes.css) ---------- */
-.eyebrow      { font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--accent); }
-.title        { line-height: .92; font-size: clamp(2.8rem, 8.5vw, 7.5rem); }
-.description  { font-size: clamp(.95rem, 1.05vw, 1.08rem); line-height: 1.75; color: var(--text-dim); }
-.meta         { font-size: 10px; letter-spacing: .35em; text-transform: uppercase; color: var(--text-dim); opacity: .7; }
-.site-name    { color: var(--text-dim); }
-.rule         { height: 1px; width: 7rem; background: linear-gradient(90deg, var(--accent), transparent); }
+/* =====================================================================
+   THE SELECT SCREEN — layout. Colours and fonts per world: themes.css
+   ===================================================================== */
+:root { --topbar: 64px; --ease: cubic-bezier(.22, 1, .36, 1); --grow: .8s; }
 
-/* Portfolio button */
-.portfolio-btn { color: var(--btn-fg); background: var(--btn-bg); border: 1px solid var(--btn-border); transition: color .3s, background .3s; }
-.portfolio-btn .btn-sheen {
-  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform .7s ease;
+.topbar      { height: var(--topbar); }
+.site-name   { color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.4); font-family: var(--font-mono); }
+.tagline     { color: rgba(255,255,255,.75); text-shadow: 0 1px 2px rgba(0,0,0,.4); font-family: var(--font-mono); }
+.contact-btn { color: #fff; background: rgba(0,0,0,.38); border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: .55rem 1.1rem; backdrop-filter: blur(8px); font-family: var(--font-mono); transition: background .3s, border-color .3s; cursor: pointer; }
+.contact-btn:hover { background: rgba(0,0,0,.6); border-color: #fff; }
+.hint        { color: rgba(255,255,255,.7); text-shadow: 0 1px 2px rgba(0,0,0,.4); font-family: var(--font-mono); animation: hint 2.4s ease-in-out infinite; }
+@keyframes hint { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
+
+/* ---------- the three doors ---------- */
+.panel {
+  position: relative; flex: 1 1 0; min-width: 0; min-height: 0; overflow: hidden;
+  container-type: size;                               /* cqw / cqh units inside */
+  cursor: pointer; outline: none;
+  transition: flex-grow var(--grow) var(--ease);
+  background: var(--bg);
+  color: var(--fg);
 }
-.portfolio-btn:hover .btn-sheen { transform: translateX(120%); }
+.panel.is-active { flex-grow: 2.3; cursor: default; }
+.panel.is-dim    { flex-grow: .85; }
+.panel:focus-visible::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 0 3px #fff; pointer-events: none; z-index: 5; }
+.world { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 
-/* Nav arrows */
-.nav-btn      { color: var(--text-dim); transition: color .3s; }
-.nav-btn:hover{ color: #fff; }
-.nav-ring     { border: 1px solid color-mix(in srgb, currentColor 40%, transparent); border-radius: 999px; backdrop-filter: blur(6px); background: rgba(0,0,0,.25); }
-.nav-btn:hover .nav-ring { border-color: var(--accent); box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 45%, transparent); }
+/* the cut-out: centred when closed, to the right when open */
+.photo {
+  position: absolute; bottom: 0; left: 50%; width: 100%; height: 62%;
+  display: flex; align-items: flex-end; justify-content: center;
+  translate: -50% 0; z-index: 2; pointer-events: none;
+  transition: left var(--grow) var(--ease), height var(--grow) var(--ease), width var(--grow) var(--ease);
+}
+.photo img { display: block; height: 100%; max-width: 100%; width: auto; object-fit: contain; object-position: bottom; }
+.is-active .photo { left: 66%; width: 64%; height: 84%; }
+.is-dim .photo    { height: 52%; }
 
-/* Photo */
-.photo        { filter: drop-shadow(0 30px 60px rgba(0,0,0,.6)); }
-.photo img    {                                   /* fade the bottom into the floor */
-  display: block;
-  mask-image: linear-gradient(to top, transparent 0%, #000 16%);
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 16%);
+/* the copy, top-left */
+.copy { position: absolute; z-index: 3; left: 7%; right: 7%; top: calc(var(--topbar) + 10px); pointer-events: none; }
+.copy .eyebrow, .copy .title { pointer-events: none; }
+.is-active .copy { right: 40%; }
+.more { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .6s var(--ease), opacity .35s ease; }
+.is-active .more { max-height: 70vh; opacity: 1; transition: max-height .7s var(--ease) .1s, opacity .5s ease .2s; }
+.more .actions, .more .chips { pointer-events: auto; }
+.chips  { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip   { font-size: 11px; line-height: 1; padding: .45rem .7rem; white-space: nowrap; }
+.actions{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.btn    { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; padding: .85rem 1.3rem; border: 1px solid transparent; transition: background .3s, color .3s, border-color .3s, filter .3s, transform .3s; }
+.btn:active { transform: scale(.98); }
+.title  { margin: 0; line-height: 1; }
+.title-img img { display: block; height: auto; width: min(100%, 420px); }
+.pitch  { margin: 14px 0 12px; font-size: clamp(.9rem, 1.9cqw, 1.05rem); line-height: 1.55; max-width: 30em; }
+.avail  { margin: 14px 0 0; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+
+/* ---------- phones: the doors stack; copy left, photo right ---------- */
+@media (max-width: 767px) {
+  .panel.is-active { flex-grow: 2.6; }
+  .panel.is-dim    { flex-grow: .7; }
+  .photo { left: 74%; width: 58%; height: 88%; }
+  .is-active .photo { left: 80%; width: 52%; height: 92%; }
+  .is-dim .photo    { height: 80%; }
+  .copy  { left: 20px; right: 36%; top: 18px; }
+  .panel:first-child .copy { top: calc(var(--topbar) + 2px); }
+  .is-active .copy { right: 26%; }
+  .is-dim .copy { transform: scale(.72); transform-origin: top left; }
+  .copy { transition: transform var(--grow) var(--ease); }
+  .is-active .more { max-height: 60vh; }
+  .chip  { padding: .4rem .6rem; font-size: 10px; }
+  .btn   { padding: .7rem 1rem; font-size: 11px; }
+  .pitch { margin: 10px 0 10px; font-size: .85rem; }
+  .avail { display: none; }
 }
 
-/* Oversized background word */
-.bg-text {
-  font-size: clamp(6rem, 22vw, 24rem);
-  text-transform: uppercase;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--bg-text-stroke);
-  opacity: var(--bg-text-opacity, .35);
-  z-index: 0;
+/* =====================================================================
+   THE HIRE SHEET
+   ===================================================================== */
+.sheet-backdrop { background: rgba(0,0,0,.62); backdrop-filter: blur(10px); padding: 0; }
+.sheet {
+  position: relative; width: min(600px, 100%); max-height: 92dvh; overflow: auto;
+  padding: 32px 32px 28px; border-radius: 20px 20px 0 0;
+  background: var(--sheet-bg, #111); color: var(--fg, #fff);
+  box-shadow: 0 30px 80px rgba(0,0,0,.6);
 }
+@media (min-width: 768px) { .sheet { border-radius: 20px; padding: 40px 44px 36px; } }
+.sheet-close  { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 999px; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); background: transparent; color: inherit; cursor: pointer; }
+.sheet-close:hover { border-color: currentColor; }
+.sheet-title  { margin: 6px 0 0; }
+.sheet .pitch { margin: 12px 0 18px; font-size: 1rem; }
+.sheet .roles { list-style: none; margin: 12px 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .95rem; opacity: .85; }
+.sheet .avail { margin: 16px 0 0; }
+.sheet .actions { margin-top: 22px; }
+.sheet .email { margin: 12px 0 0; font-size: 13px; opacity: .8; word-break: break-all; font-family: var(--font-mono); }
+.sheet .links { list-style: none; margin: 22px 0 0; padding: 18px 0 0; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent); display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.sheet .links a { color: inherit; text-decoration: none; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .85; border-bottom: 1px solid transparent; }
+.sheet .links a:hover { opacity: 1; border-bottom-color: currentColor; }
+.sheet .based { margin: 14px 0 0; font-size: 12px; opacity: .6; }
 
-/* Rails */
-.rail  { position: absolute; top: 12vh; bottom: 12vh; width: 1px; background: linear-gradient(to bottom, transparent, var(--accent) 30%, var(--accent) 70%, transparent); opacity: .35; }
-.rail-l{ left: 6vw; }
-.rail-r{ right: 6vw; }
-.node  { position: absolute; width: 7px; height: 7px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 14px var(--accent); animation: pulse 3s ease-in-out infinite; }
+/* plain sheet (from the Contact button) */
+.world-all { --sheet-bg: #121216; --fg: #f4f4f6; --accent: #fff; font-family: var(--font-manrope); }
+.world-all .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; text-transform: uppercase; opacity: .7; }
+.world-all .sheet-title { font-family: var(--font-space); text-transform: uppercase; font-size: clamp(1.3rem, 3vw, 1.9rem); letter-spacing: .04em; }
+.world-all .btn-hire { background: #fff; color: #111; }
+.world-all .btn-portfolio { border-color: rgba(255,255,255,.4); color: #fff; }
+.world-all .btn-portfolio:hover { border-color: #fff; }
 
-/* Atmosphere */
-.vignette { background: radial-gradient(ellipse 80% 70% at 50% 45%, transparent 50%, rgba(0,0,0,.65) 100%); }
-.grain {
-  opacity: .07; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-.glow { position: absolute; border-radius: 999px; filter: blur(70px); pointer-events: none; animation: drift 14s ease-in-out infinite alternate; }
-
-/* Textures */
-.halftone { background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1.3px); background-size: 6px 6px; mask-image: linear-gradient(115deg, transparent 40%, #000 80%); }
+/* ---------- shared textures ---------- */
+.pixelated { image-rendering: pixelated; }
 .stars {
+  position: absolute; inset: -4%;
   background-image:
     radial-gradient(1px 1px at 20% 30%, #fff 50%, transparent 51%),
     radial-gradient(1px 1px at 70% 15%, #fff 50%, transparent 51%),
@@ -90,16 +143,9 @@ body {
   background-size: 400px 400px, 500px 500px, 350px 350px, 600px 600px, 450px 450px, 300px 300px, 550px 550px, 420px 420px;
   opacity: .6; animation: twinkle 4s ease-in-out infinite;
 }
-.grid-lines {
-  background-image: linear-gradient(rgba(201,204,211,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(201,204,211,.06) 1px, transparent 1px);
-  background-size: 120px 120px;
-  mask-image: radial-gradient(ellipse at 50% 50%, #000 30%, transparent 75%);
-}
-
-@keyframes pulse   { 0%,100% { opacity: .5; transform: scale(1);} 50% { opacity: 1; transform: scale(1.4);} }
-@keyframes drift   { from { transform: translate(0,0);} to { transform: translate(4vw, -3vh);} }
 @keyframes twinkle { 0%,100% { opacity: .45;} 50% { opacity: .8;} }
 
 @media (prefers-reduced-motion: reduce) {
-  .glow, .node, .stars, .p5-star, .shooting-star, .mark-sheen::after, .drift-sky, .sun-glow, .heave-far, .heave-waves, .bob-slow { animation: none !important; }
+  .panel, .photo, .more, .copy { transition: none !important; }
+  .stars, .p5-star, .shooting-star, .mark-sheen::after, .drift-sky, .sun-glow, .heave-far, .heave-waves, .hint { animation: none !important; }
 }

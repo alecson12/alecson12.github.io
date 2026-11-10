@@ -3,62 +3,93 @@
  *  EDIT YOUR CONTENT HERE
  * =====================================================================
  *  This is the ONE file you need to touch to change the words, the
- *  button labels, the links, and which photo each page shows.
+ *  services, the links, the contact details and the photos.
  *
  *  PHOTOS
- *    Drop your pictures into:  public/photos/
- *    Then change the `photo` path below to match the filename, e.g.
- *      photo: '/photos/dance.webp'
+ *    Drop your pictures into:  public/photos/   then change `photo`.
  *    Cut-out pictures (transparent background) look best: the person
  *    stands straight on the page. Any size works.
  *
  *  LINKS
- *    `portfolioLink` is where the big button goes. Use the full address
- *    (https://...) of each portfolio site.
+ *    `portfolioLink` is where the Portfolio button goes. Use the full
+ *    address (https://...) of each portfolio site.
+ *
+ *  Everything here was taken from your three portfolio sites. Nothing
+ *  was invented; change it as you like.
  * ===================================================================== */
 
-export const PAGES = {
-  dance: {
+/** Top bar. */
+export const SITE = {
+  name: 'Alecson Gantica',
+  tagline: 'One person. Three ways to hire me.',
+  hint: 'Pick one',
+  contactLabel: 'Contact',
+}
+
+/** The three roles, in the order they appear left to right. */
+export const ROLES = [
+  {
+    id: 'dance',
     title: 'Dance Artist',
     eyebrow: 'Dance Portfolio',
-    // Short labels shown as cream tags under the title (Dance page only)
-    tags: ['KRUMP', 'OPEN CHOREO', 'JR TSUBAKI'],
-    description: 'A dancer driven by the power of movement to inspire, connect, and create.',
-    // Small line in the bottom corner on big screens (Dance page only)
-    meta: 'Nitrous Image Crew · FLOPM · Buck SNDKT · The Rocketeerz',
-    buttonLabel: 'View Portfolio',
+    pitch: 'A dancer driven by the power of movement to inspire, connect, and create.',
+    // What you can be hired for (from the Works & Projects sections)
+    services: ['Performances', 'Choreography', 'Coaching', 'Competition judging', 'Corporate guesting', 'TV appearances'],
+    styles: ['Krump', 'Open Choreo'],
+    availability: 'Nitrous Image Crew · FLOPM · Buck SNDKT · The Rocketeerz',
+    hireLabel: 'Hire me',
+    hireSubject: 'Dance booking — Alecson Gantica',
+    portfolioLabel: 'Portfolio',
     portfolioLink: 'https://alecson12.github.io/danceartist-portfolio/',
     photo: '/photos/dance.webp',
     photoAlt: 'Alecson Gantica, dance artist',
   },
-
-  design: {
+  {
+    id: 'design',
     title: 'Graphic Design',
     eyebrow: 'Kozmik Kreations',
-    description: 'Kreativity beyond the ordinary.',
-    // Small line in the bottom corner on big screens (Design page only)
-    meta: 'Logo & Brand Identity · Social Media · Print',
-    buttonLabel: 'Explore My Kreations',
+    pitch: 'Kreativity beyond the ordinary.',
+    // From the Services slide of Kozmik Kreations
+    services: ['Logo & brand identity', 'Social media graphics', 'Posters & marketing', 'Print design', 'Custom graphics & merch', 'Photo retouching'],
+    availability: 'Open for commissions',
+    hireLabel: 'Start a project',
+    hireSubject: 'Project inquiry — Kozmik Kreations',
+    // Kozmik has its own inbox; leave blank to use the main email below
+    email: 'kozmikkreations.design@gmail.com',
+    portfolioLabel: 'My Kreations',
     portfolioLink: 'https://alecson12.github.io/kozmikkreations-portfolio/',
     photo: '/photos/design.webp',
     photoAlt: 'Alecson Gantica, graphic designer',
-    // The chrome Kozmik mark shown above the title (transparent images)
     mark: '/media/design/kozmik-chrome.webp',
     markStencil: '/media/design/kozmik-mark.png',
   },
-
-  unity: {
+  {
+    id: 'unity',
     title: 'Unity Developer',
-    eyebrow: 'Unity Developer · Game UI & Systems',
-    buttonLabel: 'Dive In',
+    eyebrow: 'Game UI & Systems',
+    pitch: 'I build the screens players live in.',
+    // From the What I do section of the Unity portfolio
+    services: ['Unity game development', 'Game UI / UX implementation', 'C# programming', 'Game systems', 'Gameplay programming', 'Bug fixing & optimization'],
+    availability: 'Open to contract and part-time work',
+    hireLabel: 'Hire me',
+    hireSubject: 'Unity work — Alecson Gantica',
+    portfolioLabel: 'Portfolio',
     portfolioLink: 'https://alecson12.github.io/unitydeveloper-portfolio/',
     photo: '/media/unity/alecson-unity-developer-white.webp',
-    // Pixel wordmark shown in the sky instead of a text title (transparent webp)
-    wordmark: '/media/unity/wordmark.webp',
-    wordmarkAlt: 'Unity Developer, Alecson Gantica',
     photoAlt: 'Alecson Gantica, Unity developer',
+    wordmark: '/media/unity/wordmark.webp',
   },
-}
+]
 
-/** Text shown in the top-left corner of every page. */
-export const SITE_NAME = 'Alecson Gantica'
+/** Contact details shown in the hire sheet (all from your portfolios). Remove any line you do not want shown. */
+export const CONTACT = {
+  email: 'alecsongantica12@gmail.com',
+  based: 'Bulacan, Philippines',
+  links: [
+    { label: 'Facebook', href: 'https://www.facebook.com/alecson.12' },
+    { label: 'Instagram', href: 'https://www.instagram.com/alec.jrtsubaki' },
+    { label: 'TikTok', href: 'https://www.tiktok.com/@mr.gantica' },
+    { label: 'Behance', href: 'https://www.behance.net/KozmikKreations' },
+    { label: 'GitHub', href: 'https://github.com/alecson12' },
+  ],
+}
