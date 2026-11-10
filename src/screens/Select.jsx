@@ -44,7 +44,7 @@ export default function Select() {
   return (
     <main className="select fixed inset-0 overflow-hidden bg-black" data-active={active ?? ''}>
       <header className="topbar pointer-events-none absolute inset-x-0 top-0 z-30">
-        <div className="flex items-center justify-between px-5 pt-4 md:px-8 md:pt-5">
+        <div className="flex items-center justify-between px-5 pt-4 md:h-full md:px-8 md:pt-0">
           <span className="site-name text-[12px] uppercase tracking-[0.32em]">{SITE.name}</span>
           <button type="button" onClick={() => setSheet('all')} className="contact-btn pointer-events-auto text-[12px] uppercase tracking-[0.3em]">
             {SITE.contactLabel}
