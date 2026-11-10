@@ -111,11 +111,15 @@ body {
   .is-active .photo { left: 80%; width: 52%; height: 60%; z-index: 4; }
   .is-active .more { max-height: 70vh; }
   .chip    { padding: .45rem .7rem; font-size: 10px; }
+  .chip-card { flex-direction: row; align-items: center; gap: 8px; padding: 7px 10px 7px 7px; min-width: 0; max-width: none; flex: 1 1 44%; font-size: 12px !important; line-height: 1.15; }
+  .chip-icon { width: 28px; height: 28px; flex: none; }
+  .chip-icon svg { width: 14px; height: 14px; }
+  .site-name { letter-spacing: .22em; font-size: 10px; }
   .chips   { gap: 6px; margin-top: 14px; }
   .btn     { padding: .75rem 1.1rem; font-size: 11px; }
   .actions { margin-top: 18px; gap: 8px; }
   .pitch   { margin-top: 14px; font-size: .9rem; }
-  .avail   { display: none; }
+  .panel .avail { display: none !important; }
 }
 
 /* =====================================================================
