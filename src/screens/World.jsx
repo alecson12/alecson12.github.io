@@ -1,6 +1,6 @@
 /**
  * The painted background of each panel. Pure decoration (aria-hidden).
- * Dance  — crimson paper, red skyline, zigzag strip, spinning outlined stars
+ * Dance  — crimson paper, the PersonaCity skyline, spinning outlined stars
  * Design — the void, star fields, the Earth's glowing horizon
  * Unity  — the pixel Great Wave in its three painted layers, in motion
  * All sizes are relative to the panel, so the worlds work at any width.
@@ -23,10 +23,8 @@ function Dance() {
   return (
     <div aria-hidden className="world">
       <div className="paper" />
-      <span className="bldg bldg-1" />
-      <span className="bldg bldg-2" />
-      <span className="bldg bldg-3" />
-      <div className="zigzag" />
+      {/* PersonaCity.png (public/media/dance/persona-city.webp): the red city behind the portrait */}
+      <img src="/media/dance/persona-city.webp" alt="" className="city" width={1600} height={1200} draggable="false" />
       <svg viewBox="0 0 24 24" className="sparkle">
         <path d="M12 0c.9 6.6 4.5 10.2 12 12-7.5 1.8-11.1 5.4-12 12-.9-6.6-4.5-10.2-12-12C7.5 10.2 11.1 6.6 12 0Z" fill="currentColor" />
       </svg>

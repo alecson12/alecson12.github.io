@@ -21,7 +21,8 @@
 /** Top bar. */
 export const SITE = {
   name: 'Alecson Gantica',
-  tagline: 'One person. Three ways to hire me.',
+  // The big question in the header
+  question: 'What version of me you want to hire?',
   hint: 'Pick one',
   contactLabel: 'Contact',
 }

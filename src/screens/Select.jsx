@@ -43,12 +43,14 @@ export default function Select() {
 
   return (
     <main className="select fixed inset-0 overflow-hidden bg-black" data-active={active ?? ''}>
-      <header className="topbar pointer-events-none absolute inset-x-0 top-0 z-30 flex items-center justify-between px-5 md:px-8">
-        <span className="site-name text-[12px] uppercase tracking-[0.32em]">{SITE.name}</span>
-        <span className="tagline hidden text-[12px] tracking-[0.18em] uppercase md:block">{SITE.tagline}</span>
-        <button type="button" onClick={() => setSheet('all')} className="contact-btn pointer-events-auto text-[12px] uppercase tracking-[0.3em]">
-          {SITE.contactLabel}
-        </button>
+      <header className="topbar pointer-events-none absolute inset-x-0 top-0 z-30">
+        <div className="flex items-center justify-between px-5 pt-4 md:px-8 md:pt-5">
+          <span className="site-name text-[12px] uppercase tracking-[0.32em]">{SITE.name}</span>
+          <button type="button" onClick={() => setSheet('all')} className="contact-btn pointer-events-auto text-[12px] uppercase tracking-[0.3em]">
+            {SITE.contactLabel}
+          </button>
+        </div>
+        <h1 className="question">{SITE.question}</h1>
       </header>
 
       <div className="panels absolute inset-0 flex flex-col md:flex-row" onMouseLeave={() => !touch && setActive(null)}>

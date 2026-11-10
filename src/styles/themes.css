@@ -9,8 +9,8 @@
 
 /* =====================================================================
    DANCE ARTIST · the cover of the dance portfolio
-   Crimson paper, cream poster type, cream arrow tags, red skyline,
-   black-and-white zigzag, outlined stars that slowly spin.
+   Crimson paper, cream poster type, cream arrow tags, the PersonaCity
+   skyline behind the portrait, outlined stars that slowly spin.
    ===================================================================== */
 .world-dance {
   --bg: #a41f1f; --fg: #fdf6ec; --accent: #fdf6ec; --sheet-bg: #a41f1f;
@@ -19,28 +19,26 @@
 }
 .world-dance.panel { background: radial-gradient(ellipse 80% 60% at 80% 100%, rgba(80,15,15,.55), transparent 70%), radial-gradient(ellipse 60% 50% at 10% 0%, rgba(200,50,50,.35), transparent 70%), var(--red); }
 .world-dance .paper  { position: absolute; inset: 0; opacity: .22; mix-blend-mode: multiply; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>"); }
-.world-dance .bldg   { position: absolute; bottom: 0; background-color: var(--red-deep); background-image: radial-gradient(circle, rgba(164,31,31,.85) 0 2.2px, transparent 2.8px); background-size: 16px 22px; background-position: 6px 10px; }
-.world-dance .bldg-1 { right: 4%;  width: 30%; height: 72%; background-color: var(--red-dark); clip-path: polygon(0 10%, 70% 10%, 70% 0, 100% 0, 100% 100%, 0 100%); }
-.world-dance .bldg-2 { right: 30%; width: 26%; height: 54%; clip-path: polygon(0 0, 100% 6%, 100% 100%, 0 100%); }
-.world-dance .bldg-3 { right: 54%; width: 20%; height: 40%; background-color: var(--red-dark); clip-path: polygon(0 14%, 50% 0, 100% 14%, 100% 100%, 0 100%); }
-.world-dance .zigzag { position: absolute; left: -6%; bottom: -1%; width: 72%; height: 13%; background-color: var(--cream);
-  background-image: linear-gradient(135deg, var(--ink) 25%, transparent 25%), linear-gradient(225deg, var(--ink) 25%, transparent 25%), linear-gradient(45deg, var(--ink) 25%, transparent 25%), linear-gradient(315deg, var(--ink) 25%, transparent 25%);
-  background-position: 18px 0, 18px 0, 0 0, 0 0; background-size: 36px 36px; clip-path: polygon(0 55%, 100% 0, 100% 100%, 0 100%); opacity: .9; }
+.world-dance .city   { position: absolute; bottom: 0; left: 50%; width: 150%; max-width: none; height: auto; translate: -50% 0; opacity: .9; transition: width var(--grow) var(--ease), opacity .6s ease; }
+.is-active.world-dance .city { width: 118%; left: 60%; opacity: 1; }
+.is-dim.world-dance .city    { width: 260%; opacity: .7; }
 .world-dance .sparkle { position: absolute; right: 6%; top: calc(var(--topbar) + 6px); width: 7%; min-width: 22px; max-width: 44px; color: var(--cream); }
 .world-dance .p5-star { position: absolute; height: auto; min-width: 22px; max-width: 70px; translate: -50% -50%; animation: star-turn 16s linear infinite; opacity: .9; }
 @keyframes star-turn { to { rotate: 360deg; } }
 
 .world-dance .eyebrow   { display: inline-block; font-family: var(--font-persona); font-size: clamp(.72rem, 2.2cqw, .95rem); letter-spacing: .12em; text-transform: uppercase; color: var(--red); background: var(--cream); padding: .35rem 1.4rem .35rem .9rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%); border-radius: 999px 0 0 999px; margin: 0 0 10px; }
 .world-dance .title     { font-family: var(--font-persona); text-transform: uppercase; color: var(--cream); }
-.world-dance .title-top { font-size: clamp(.95rem, 3.6cqw, 1.9rem); letter-spacing: .6em; margin-left: .1em; line-height: 1.1; }
-.world-dance .title-big { font-size: clamp(3rem, 19cqw, 10rem); line-height: .86; letter-spacing: -.01em; margin-left: -.03em; text-shadow: 0 .06em 0 rgba(0,0,0,.28); }
+.world-dance .title-top { font-size: clamp(.95rem, 4.6cqw, 2.4rem); letter-spacing: .6em; margin-left: .3em; line-height: 1.1; }
+.world-dance .title-big { font-size: clamp(2.6rem, 25cqw, 13rem); line-height: .86; letter-spacing: -.01em; text-shadow: 0 .06em 0 rgba(0,0,0,.28); }
+.is-active.world-dance .title-big { font-size: clamp(3rem, 15cqw, 9rem); }
+.is-active.world-dance .title-top { font-size: clamp(.95rem, 2.8cqw, 1.8rem); }
 .world-dance .pitch     { color: var(--cream); }
-.world-dance .chip      { font-family: var(--font-persona); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; background: var(--cream); color: var(--red); clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%); border-radius: 999px 0 0 999px; padding-right: 1.1rem; }
+.world-dance .chip      { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; color: var(--cream); border-color: rgba(253,246,236,.45); }
 .world-dance .avail     { color: var(--cream); }
 .world-dance .btn       { font-family: var(--font-persona); font-size: .9rem; letter-spacing: .12em; }
 .world-dance .btn-hire  { background: var(--cream); color: var(--red); border: 0; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%); border-radius: 999px 0 0 999px; padding-right: 1.8rem; }
 .world-dance .btn-hire:hover { background: var(--ink); color: var(--cream); }
-.world-dance .btn-portfolio  { border-color: var(--cream); color: var(--cream); border-radius: 999px; }
+.world-dance .btn-portfolio  { color: var(--cream); border-radius: 999px; }
 .world-dance .btn-portfolio:hover { background: var(--cream); color: var(--red); }
 .world-dance .photo img { filter: drop-shadow(-10px 10px 0 rgba(10,10,10,.85)); }
 .world-dance .sheet-title { font-family: var(--font-persona); text-transform: uppercase; font-size: clamp(2.4rem, 7vw, 3.6rem); color: var(--cream); line-height: .9; }
@@ -82,9 +80,12 @@
 .world-design .title     { font-family: var(--font-space); text-transform: uppercase; letter-spacing: .04em; --lh: 1.1; line-height: var(--lh);
   background: var(--chrome) 0 0 / 100% calc(var(--lh) * 1em) repeat-y; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 1px 0 rgba(255,255,255,.08)) drop-shadow(0 10px 30px rgba(60,100,200,.18)); }
-.world-design .title-top, .world-design .title-big { font-size: clamp(1.5rem, 8.2cqw, 4.2rem); }
+.world-design .title-top, .world-design .title-big { font-size: clamp(1.3rem, 11cqw, 6rem); }
+.is-active.world-design .title-top, .is-active.world-design .title-big { font-size: clamp(1.5rem, 6.6cqw, 4.2rem); }
+.world-design .mark { margin-left: auto; margin-right: auto; }
+.is-active.world-design .mark { margin-left: 0; }
 .world-design .pitch     { color: var(--mute); }
-.world-design .chip      { font-family: var(--font-space); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--fg); border: 1px solid rgba(201,214,242,.3); background: rgba(6,10,24,.45); }
+.world-design .chip      { font-family: var(--font-space); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--fg); border-color: rgba(201,214,242,.3); }
 .world-design .avail     { color: var(--cosmic); font-family: var(--font-space); font-size: 9px; letter-spacing: .3em; opacity: 1; }
 .world-design .btn       { font-family: var(--font-space); font-size: 10px; letter-spacing: .24em; }
 .world-design .btn-hire  { color: #060914; border-color: #f3f5fb;
@@ -92,9 +93,9 @@
   text-shadow: 0 1px 0 rgba(255,255,255,.7);
   box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgba(30,34,54,.55), 0 1px 0 rgba(0,0,0,.55), 0 18px 50px -18px rgba(110,160,255,.6); }
 .world-design .btn-hire:hover { filter: brightness(1.07); }
-.world-design .btn-portfolio  { color: var(--fg); border-color: rgba(201,214,242,.38); background: rgba(6,10,24,.45); }
+.world-design .btn-portfolio  { color: var(--fg); border-color: rgba(201,214,242,.38); }
 .world-design .btn-portfolio:hover { border-color: rgba(233,240,253,.75); background: rgba(201,214,242,.12); }
-.world-design .photo img { filter: drop-shadow(0 30px 60px rgba(0,0,0,.9)) drop-shadow(0 0 1px rgba(201,214,242,.9)) drop-shadow(0 0 40px rgba(124,167,245,.18)); mask-image: linear-gradient(to top, transparent 0%, #000 10%); -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 10%); }
+.world-design .photo img { mask-image: linear-gradient(to top, transparent 0%, #000 8%); -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 8%); }
 .world-design .sheet-title { font-family: var(--font-space); text-transform: uppercase; font-size: clamp(1.5rem, 4vw, 2.2rem); letter-spacing: .04em; background: var(--chrome) 0 0 / 100% 1.2em repeat-y; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; line-height: 1.2; }
 .world-design .sheet-close { color: var(--fg); }
 
@@ -122,14 +123,15 @@
 .heave-waves { animation: heave-waves 11s ease-in-out infinite; }
 
 .world-unity .eyebrow   { display: inline-block; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); background: rgba(255,255,255,.6); border: 1px solid rgba(16,34,77,.25); border-radius: 6px; padding: .35rem .6rem; backdrop-filter: blur(6px); margin: 0 0 12px; }
-.world-unity .title-img img { width: clamp(150px, 64cqw, 460px); filter: drop-shadow(0 6px 0 rgba(5,15,40,.25)); }
+.world-unity .title-img img { width: clamp(150px, 88cqw, 640px); filter: drop-shadow(0 6px 0 rgba(5,15,40,.25)); transition: width var(--grow) var(--ease); }
+.is-active.world-unity .title-img img { width: clamp(220px, 50cqw, 520px); }
 .world-unity .pitch     { color: var(--navy); font-family: var(--font-jersey); font-size: clamp(1.1rem, 2.6cqw, 1.5rem); }
-.world-unity .chip      { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--navy); background: rgba(255,255,255,.6); border: 1px solid rgba(16,34,77,.2); border-radius: 6px; }
+.world-unity .chip      { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--navy); background: rgba(255,255,255,.42); border-color: rgba(16,34,77,.18); border-radius: 6px; backdrop-filter: blur(4px); }
 .world-unity .avail     { display: inline-block; color: var(--navy); background: rgba(255,255,255,.55); border-radius: 6px; padding: .3rem .55rem; opacity: 1; }
 .world-unity .btn       { font-size: 13px; letter-spacing: .06em; border-radius: 8px; }
 .world-unity .btn-hire  { color: #fff; border-color: #f07a6e; background: linear-gradient(180deg, #e23a2e, #b81f16); box-shadow: 0 8px 20px -10px rgba(1,6,24,.7); }
 .world-unity .btn-hire:hover { filter: brightness(1.08); }
-.world-unity .btn-portfolio  { color: var(--navy); border-color: rgba(16,34,77,.35); background: rgba(255,255,255,.45); backdrop-filter: blur(6px); }
+.world-unity .btn-portfolio  { color: var(--navy); border-color: rgba(16,34,77,.35); background: rgba(255,255,255,.35); backdrop-filter: blur(6px); }
 .world-unity .btn-portfolio:hover { background: rgba(255,255,255,.7); border-color: rgba(16,34,77,.6); }
 .world-unity .photo img { filter: drop-shadow(0 18px 28px rgba(5,25,60,.45)); }
 /* the sheet sits in the deep water */
