@@ -8,49 +8,49 @@
  *  PHOTOS
  *    Drop your pictures into:  public/photos/
  *    Then change the `photo` path below to match the filename, e.g.
- *      photo: '/photos/dance.jpg'
- *    Portrait orientation (taller than wide) looks best. Any size works.
+ *      photo: '/photos/dance.webp'
+ *    Cut-out pictures (transparent background) look best: the person
+ *    stands straight on the page. Any size works.
  *
  *  LINKS
- *    `portfolioLink` is where the "View Portfolio" button goes.
- *    Use a full URL (https://...) for an external site, or a path like
- *    '/dance' once you build the gallery pages inside this project.
+ *    `portfolioLink` is where the big button goes. Use the full address
+ *    (https://...) of each portfolio site.
  * ===================================================================== */
 
 export const PAGES = {
   dance: {
     title: 'Dance Artist',
-    eyebrow: 'Krump · Open Choreography',
-    // Short labels shown as jagged chips under the description (Dance page only)
-    tags: ['KRUMP', 'FLOPH', 'NITROUS IMAGE CREW', 'BUCK SHOKT'],
-    description:
-      'Choreographer, performer, and crew member. Placeholder text: write two or three sentences about your dance journey, your style, and what you bring to a stage.',
+    eyebrow: 'Dance Portfolio',
+    // Short labels shown as cream tags under the title (Dance page only)
+    tags: ['KRUMP', 'OPEN CHOREO', 'JR TSUBAKI'],
+    description: 'A dancer driven by the power of movement to inspire, connect, and create.',
+    // Small line in the bottom corner on big screens (Dance page only)
+    meta: 'Nitrous Image Crew · FLOPM · Buck SNDKT · The Rocketeerz',
     buttonLabel: 'View Portfolio',
-    portfolioLink: 'https://www.behance.net/gallery/231948345/DANCE-PORTFOLIO-Alecson-Gantica-',
-    photo: '/photos/dance.svg',
+    portfolioLink: 'https://alecson12.github.io/danceartist-portfolio/',
+    photo: '/photos/dance.webp',
     photoAlt: 'Alecson Gantica, dance artist',
   },
 
   design: {
     title: 'Graphic Design',
     eyebrow: 'Kozmik Kreations',
-    description:
-      'Branding, logo design, and visual identity. Placeholder text: describe the kind of design work you do, who you have worked with, and what your visual voice is.',
-    buttonLabel: 'View Portfolio',
-    portfolioLink: '#design-portfolio-coming-soon',
-    photo: '/photos/design.svg',
+    description: 'Kreativity beyond the ordinary.',
+    // Small line in the bottom corner on big screens (Design page only)
+    meta: 'Logo & Brand Identity · Social Media · Print',
+    buttonLabel: 'Explore My Kreations',
+    portfolioLink: 'https://alecson12.github.io/kozmikkreations-portfolio/',
+    photo: '/photos/design.webp',
     photoAlt: 'Alecson Gantica, graphic designer',
+    // The chrome Kozmik mark shown above the title (transparent images)
+    mark: '/media/design/kozmik-chrome.webp',
+    markStencil: '/media/design/kozmik-mark.png',
   },
 
   unity: {
     title: 'Unity Developer',
-    eyebrow: 'Worldbuilder · Gameplay · Systems',
-    description:
-      'Gameplay programmer and game designer. Placeholder text: mention the games or prototypes you have built, the systems you enjoy coding, and the genres you love.',
-    // The Unity page has a second text column (right side) in the layout.
-    secondaryText:
-      'Placeholder text for the right column: tools you use (C#, Unity, shaders, Tilemaps), or a short list of shipped projects and jams.',
-    buttonLabel: 'View Portfolio',
+    eyebrow: 'Unity Developer · Game UI & Systems',
+    buttonLabel: 'Dive In',
     portfolioLink: 'https://alecson12.github.io/unitydeveloper-portfolio/',
     photo: '/media/unity/alecson-unity-developer-white.webp',
     // Pixel wordmark shown in the sky instead of a text title (transparent webp)

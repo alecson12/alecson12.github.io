@@ -1,85 +1,113 @@
 import PageShell from '../components/PageShell'
 import Photo from '../components/Photo'
 import PortfolioButton from '../components/PortfolioButton'
-import BgText from '../components/BgText'
 import Reveal from '../components/Reveal'
 import { PAGES } from '../content/pages'
 
-/** Four-point comic star used as a graphic accent. */
-function Star({ className = '', style }) {
+/**
+ * PAGE 1 — Dance Artist
+ * The cover of the dance portfolio, as a landing page: crimson paper,
+ * cream poster type, cream arrow tags, a dark red skyline, a black-and-
+ * white zigzag, and the outlined stars that spin on the portfolio site.
+ * Layout: text LEFT, the cut-out photo RIGHT standing on the bottom edge.
+ * Theme styles: .theme-dance in styles/themes.css
+ * Content: src/content/pages.js → PAGES.dance
+ */
+
+// The outlined stars (public/media/dance/star_p5.png, from the portfolio).
+// x / y are % of the page, w is width in vw. Odd ones spin the other way.
+const STARS = [
+  { x: 3, y: 15, w: 4.2 },
+  { x: 46, y: 9, w: 2.6 },
+  { x: 56, y: 76, w: 3.4 },
+  { x: 95, y: 58, w: 2.8 },
+  { x: 7, y: 83, w: 2.4, phone: true },
+  { x: 90, y: 20, w: 3.2, phone: true },
+]
+
+/** The four-point sparkle from the cover's corner. */
+function Sparkle({ className = '' }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} style={style} aria-hidden>
-      <path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" fill="currentColor" />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <path d="M12 0c.9 6.6 4.5 10.2 12 12-7.5 1.8-11.1 5.4-12 12-.9-6.6-4.5-10.2-12-12C7.5 10.2 11.1 6.6 12 0Z" fill="currentColor" />
     </svg>
   )
 }
 
-/**
- * PAGE 1 — Dance Artist
- * Layout: photo LEFT (bleeds to the bottom edge), text RIGHT.
- * World: Persona-5-inspired character intro. Red / black / cream,
- *        angular black panels, halftone, jagged tags, comic stars.
- * Theme styles: .theme-dance in styles/themes.css
- * Content: src/content/pages.js → PAGES.dance
- */
 export default function DancePage({ direction, go }) {
   const c = PAGES.dance
   const tags = c.tags ?? []
+  const [first, ...rest] = c.title.split(' ')
   return (
     <PageShell id="dance" index={1} direction={direction} go={go} theme="theme-dance">
-      {/* ---- background layers ---- */}
-      <div aria-hidden className="halftone absolute inset-0" />
-      <div aria-hidden className="panel-black" />
-      <div aria-hidden className="panel-stripes" />
-      <div aria-hidden className="panel-white" />
-      <BgText className="right-[-3vw] top-[4vh] text-right leading-[0.78]">
-        TAKE
-        <br />
-        YOUR
-        <br />
-        HEART
-      </BgText>
-      <Star className="star absolute left-[44%] top-[12%] h-10 w-10 md:h-16 md:w-16" />
-      <Star className="star star-2 absolute left-[6%] top-[18%] h-6 w-6 md:h-9 md:w-9" />
-      <Star className="star star-3 absolute bottom-[14%] right-[38%] hidden h-7 w-7 md:block" />
+      {/* ---- the paper and the skyline ---- */}
+      <div aria-hidden className="paper absolute inset-0" />
+      <div aria-hidden className="city absolute inset-0 overflow-hidden">
+        <span className="bldg bldg-1" />
+        <span className="bldg bldg-2" />
+        <span className="bldg bldg-3" />
+        <span className="bldg bldg-4" />
+      </div>
+      <div aria-hidden className="zigzag" />
+      <Sparkle className="sparkle absolute right-5 top-5 h-7 w-7 md:right-10 md:top-8 md:h-10 md:w-10" />
+      {STARS.map((s, i) => (
+        <img
+          key={i}
+          src="/media/dance/star_p5.png"
+          alt=""
+          aria-hidden
+          className={`p5-star ${s.phone ? '' : 'hidden md:block'}`}
+          style={{
+            left: `${s.x}%`,
+            top: `${s.y}%`,
+            width: `max(${s.w}vw, 28px)`,
+            animationDuration: `${14 + (i % 3) * 4}s`,
+            animationDirection: i % 2 ? 'reverse' : 'normal',
+          }}
+        />
+      ))}
 
-      {/* ---- photo ---- */}
-      <div aria-hidden className="photo-shadow absolute bottom-0 left-1/2 z-[5] h-[52vh] w-[90vw] -translate-x-1/2 md:left-[9vw] md:h-[94vh] md:w-[44vw] md:translate-x-0" />
+      {/* ---- the photo, standing on the bottom edge ---- */}
       <Photo
         src={c.photo}
         alt={c.photoAlt}
-        className="absolute bottom-0 left-1/2 z-10 h-[52vh] w-[90vw] -translate-x-1/2 md:left-[7vw] md:h-[94vh] md:w-[44vw] md:translate-x-0"
+        className="absolute bottom-0 right-[-8vw] z-10 h-[46vh] w-[80vw] md:right-[7vw] md:h-[88vh] md:w-[42vw]"
       />
+      <Reveal i={4} as="p" className="name-tag absolute bottom-[27vh] right-[38vw] z-10 hidden md:block">
+        Alecson Gantica
+      </Reveal>
 
       {/* ---- text ---- */}
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-start px-6 pb-24 md:inset-x-auto md:right-[8vw] md:top-1/2 md:w-[42vw] md:-translate-y-1/2 md:pb-0">
+      <div className="absolute left-5 right-5 top-[84px] z-10 flex flex-col items-start md:left-[7vw] md:right-auto md:top-1/2 md:w-[50vw] md:-translate-y-1/2">
         <Reveal i={0} as="p" className="eyebrow tag">
           {c.eyebrow}
         </Reveal>
-        <Reveal i={1} as="h1" className="title mt-5">
-          <span className="block -rotate-2">{c.title.split(' ')[0]}</span>
-          <span className="title-alt block rotate-1">{c.title.split(' ').slice(1).join(' ')}</span>
-        </Reveal>
-        <Reveal i={2} as="p" className="description mt-6 max-w-md">
-          {c.description}
+        <Reveal i={1} as="h1" className="title mt-4">
+          <span className="title-top block">{first}</span>
+          <span className="title-big block">{rest.join(' ')}</span>
         </Reveal>
         {tags.length > 0 && (
-          <Reveal i={3} className="mt-5 flex flex-wrap gap-2">
-            {tags.map((t, i) => (
-              <span key={t} className={`chip ${i % 2 ? 'chip-alt' : ''}`}>
+          <Reveal i={2} className="mt-4 flex flex-wrap gap-x-1 gap-y-2">
+            {tags.map((t) => (
+              <span key={t} className="chip">
                 {t}
               </span>
             ))}
           </Reveal>
         )}
-        <Reveal i={4} className="mt-9">
+        <Reveal i={3} as="p" className="description mt-5 max-w-[26rem]">
+          {c.description}
+        </Reveal>
+        <Reveal i={4} className="mt-7">
           <PortfolioButton href={c.portfolioLink} label={c.buttonLabel} />
         </Reveal>
       </div>
 
-      <Reveal i={5} as="p" className="meta absolute bottom-7 right-8 z-10 hidden md:block">
-        JR TSUBAKI · BULACAN, PH
-      </Reveal>
+      {c.meta && (
+        <Reveal i={5} as="p" className="meta absolute bottom-7 left-8 z-10 hidden md:block">
+          {c.meta}
+        </Reveal>
+      )}
     </PageShell>
   )
 }

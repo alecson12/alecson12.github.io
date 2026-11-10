@@ -3,13 +3,12 @@
 /* Fonts are loaded in index.html (Google Fonts). */
 @theme {
   --font-persona: "Anton", "Impact", sans-serif;
-  --font-space: "Michroma", "Orbitron", sans-serif;
-  --font-orbitron: "Orbitron", sans-serif;
-  --font-mono: "Space Mono", monospace;
-  --font-fantasy: "Cinzel", "Trajan Pro", serif;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
   --font-bangers: "Bangers", "Impact", sans-serif;
-  --font-pixel: "Press Start 2P", monospace;
+  --font-mono: "Space Mono", monospace;
+  --font-space: "Michroma", sans-serif;
+  --font-manrope: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-pixel: "DotGothic16", "Silkscreen", ui-monospace, monospace;
+  --font-jersey: "Jersey 20", "DotGothic16", sans-serif;
 }
 
 html, body, #root { height: 100%; }
@@ -102,5 +101,5 @@ body {
 @keyframes twinkle { 0%,100% { opacity: .45;} 50% { opacity: .8;} }
 
 @media (prefers-reduced-motion: reduce) {
-  .glow, .node, .stars, .star, .shooting-star, .drift-sky, .sun-glow, .heave-far, .heave-waves, .bob-slow { animation: none !important; }
+  .glow, .node, .stars, .p5-star, .shooting-star, .mark-sheen::after, .drift-sky, .sun-glow, .heave-far, .heave-waves, .bob-slow { animation: none !important; }
 }

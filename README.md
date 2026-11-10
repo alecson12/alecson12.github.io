@@ -30,11 +30,11 @@ Build for hosting with `npm run build` (output in `dist/`).
 Put your pictures in `public/photos/`. Portrait orientation works best. Then in `src/content/pages.js` change, for example:
 
 ```js
-photo: '/photos/dance.svg',   // placeholder
+photo: '/photos/dance.webp',
 photo: '/photos/dance.jpg',   // your photo
 ```
 
-The three placeholders are `dance.svg`, `design.svg`, `unity.svg`. Delete them once you have real photos.
+The current photos are `dance.webp` and `design.webp`; the Unity page uses `public/media/unity/`. Cut-out pictures with a transparent background look best.
 
 ## Folder structure
 
@@ -63,7 +63,7 @@ src/
     themes.css            colours and fonts per page
 public/
   photos/                 your portraits go here
-  favicon.svg
+  icon-32.png, icon-192.png, apple-touch-icon.png   (the pixel wave tab icon)
 ```
 
 ## How navigation works
