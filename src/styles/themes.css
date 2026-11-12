@@ -136,7 +136,7 @@
   box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 24px 50px -24px rgba(1,6,24,.75), 0 2px 6px rgba(1,6,24,.3); }
 .is-active.world-unity .chips { max-width: 512px; }
 .world-unity .chip-icon { color: #eef3ff; background: rgba(255,255,255,.06); border: 2px solid rgba(255,255,255,.22); border-radius: 6px; }
-.world-unity .pitch     { text-shadow: 0 1px 0 rgba(8,24,60,.55); }
+.world-unity .pitch     { text-shadow: 0 2px 0 rgba(8,24,60,.85), 0 0 10px rgba(8,24,60,.5); }
 .world-unity .avail     { display: inline-block; color: var(--navy); background: rgba(255,255,255,.55); border-radius: 6px; padding: .3rem .55rem; opacity: 1; }
 .world-unity .btn       { font-size: 13px; letter-spacing: .06em; border-radius: 8px; }
 .world-unity .btn-hire  { color: #fff; border-color: #f07a6e; background: linear-gradient(180deg, #e23a2e, #b81f16); box-shadow: 0 8px 20px -10px rgba(1,6,24,.7); }

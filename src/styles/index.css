@@ -119,10 +119,18 @@ body {
   .chip { white-space: normal; text-align: left; max-width: 100%; }
   .btn  { white-space: nowrap; }
   .world-design .chip { font-size: 9.5px; letter-spacing: .06em; padding: .42rem .6rem; white-space: nowrap; }
-  .panel.is-active.world-unity .more { max-width: 72%; }
-  .world-unity .chip-card { font-size: 10px !important; }
-  /* the Unity photo is square, so it needs to stand taller and further right for the face to clear the tiles */
-  .world-unity .photo { height: 100%; left: 86%; }
+  /* Unity: the tiles stack in one narrow column on the left, the pitch stays on
+     one line, and the square portrait stands further left so the whole head shows */
+  .panel.is-active.world-unity .more { max-width: none; }
+  .panel.is-active.world-unity .chips, .panel.is-active.world-unity .actions { max-width: 54%; }
+  .world-unity .chip-card { flex: 1 1 100%; font-size: 10px !important; padding: 4px 8px 4px 4px; gap: 6px; }
+  .world-unity .chip-icon { width: 24px; height: 24px; }
+  .world-unity .chip-icon svg { width: 12px; height: 12px; }
+  .world-unity .chips { gap: 5px; margin-top: 10px; }
+  .world-unity .actions { margin-top: 12px; gap: 6px; }
+  .world-unity .btn { padding: .65rem .75rem; font-size: 10.5px; }
+  .is-active.world-unity .pitch { max-width: none; white-space: nowrap; font-size: 1.05rem; margin-top: 10px; }
+  .world-unity .photo { height: 100%; left: 70%; }
   .is-active .actions { flex-wrap: wrap; }
   .more { transition: grid-template-rows .45s var(--ease), opacity .2s ease; }
   .is-active .more { transition: grid-template-rows .55s var(--ease) .1s, opacity .4s ease .25s; }
@@ -137,7 +145,6 @@ body {
 
   .chip    { padding: .45rem .7rem; font-size: 10px; }
   .chip-card { flex-direction: row; align-items: center; gap: 7px; padding: 6px 8px 6px 6px; min-width: 0; max-width: none; flex: 1 1 44%; font-size: 11px !important; line-height: 1.15; }
-  .panel.is-active.world-unity .chips { max-width: 100%; }
   .chip-icon { width: 28px; height: 28px; flex: none; }
   .chip-icon svg { width: 14px; height: 14px; }
   .site-name { letter-spacing: .22em; font-size: 10px; }
