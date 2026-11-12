@@ -110,5 +110,5 @@ export const CONTACT = {
 
 /** Google Analytics 4 Measurement ID, shared by all four sites. Empty = off. */
 export const ANALYTICS = {
-  gaId: '',
+  gaId: 'G-8QL1N29D9P',
 }
