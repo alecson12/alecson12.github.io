@@ -55,6 +55,7 @@ export default function Panel({ role, state, touch, onActivate, onHire }) {
         )}
 
         <div className="more" aria-hidden={!open}>
+          <div className="more-inner">
           <p className="pitch">{role.pitch}</p>
           <ul className="chips" aria-label="Hire me for">
             {role.services.map((s) => {
@@ -97,6 +98,7 @@ export default function Panel({ role, state, touch, onActivate, onHire }) {
             </a>
           </div>
           {role.availability && <p className="avail">{role.availability}</p>}
+          </div>
         </div>
       </div>
     </section>
