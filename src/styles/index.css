@@ -114,20 +114,27 @@ body {
   .is-dim .title { display: flex; align-items: baseline; justify-content: center; gap: .4em; }
   .is-dim .title-top, .is-dim .title-big { font-size: 1.05rem !important; letter-spacing: .1em !important; line-height: 1; text-shadow: none !important; margin: 0 !important; }
   .is-dim .title-img img { width: 118px !important; }
-  .is-active .eyebrow, .is-active .title { max-width: 56%; }
-  .is-active .pitch { max-width: 58%; }
+  /* the details keep to the left so the portrait in the bottom-right corner stays clear */
+  .is-active .pitch, .is-active .more { max-width: 62%; }
+  .chip { white-space: normal; text-align: left; max-width: 100%; }
+  .btn  { white-space: nowrap; }
+  .world-design .chip { font-size: 9.5px; letter-spacing: .06em; padding: .42rem .6rem; white-space: nowrap; }
+  .panel.is-active.world-unity .more { max-width: 76%; }
+  .is-active .actions { flex-wrap: wrap; }
   .more { transition: grid-template-rows .45s var(--ease), opacity .2s ease; }
   .is-active .more { transition: grid-template-rows .55s var(--ease) .1s, opacity .4s ease .25s; }
 
-  /* photo: a portrait in the top-right corner beside the title, fading out at the
-     bottom so the text below it stays clear; only opacity and transform animate */
-  .photo { left: auto; right: -3%; top: 10px; bottom: auto; width: 50%; height: 44%; align-items: flex-start; translate: 0 0; transform: translateY(18px); opacity: 0; z-index: 2;
+  /* photo: the portrait stands in the bottom-right corner, fading out towards the
+     top and the left so the details beside it stay readable; only opacity and
+     transform animate */
+  .photo { left: auto; right: -4%; top: auto; bottom: 0; width: 54%; height: 58%; align-items: flex-end; justify-content: flex-end; translate: 0 0; transform: translateY(24px); opacity: 0; z-index: 2;
+           mask-image: linear-gradient(to bottom, transparent 0%, #000 22%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%);
            transition: opacity .35s ease, transform .5s var(--ease); }
-  .panel .photo img { object-position: top; mask-image: linear-gradient(to top, transparent 0%, #000 30%); -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 30%); }
+  .panel .photo img { object-position: bottom right; mask-image: linear-gradient(to right, transparent 0%, #000 46%); -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 46%); }
   .is-active .photo { opacity: 1; transform: translateY(0); transition: opacity .45s ease .25s, transform .6s var(--ease) .15s; }
 
   .chip    { padding: .45rem .7rem; font-size: 10px; }
-  .chip-card { flex-direction: row; align-items: center; gap: 8px; padding: 6px 10px 6px 6px; min-width: 0; max-width: none; flex: 1 1 46%; font-size: 12px !important; line-height: 1.15; }
+  .chip-card { flex-direction: row; align-items: center; gap: 7px; padding: 6px 8px 6px 6px; min-width: 0; max-width: none; flex: 1 1 44%; font-size: 11px !important; line-height: 1.15; }
   .panel.is-active.world-unity .chips { max-width: 100%; }
   .chip-icon { width: 28px; height: 28px; flex: none; }
   .chip-icon svg { width: 14px; height: 14px; }

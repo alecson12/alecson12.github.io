@@ -14,6 +14,7 @@ Everything you would normally want to change is in **one file**: `src/content/pa
 | Change where a Portfolio button goes         | `ROLES[...].portfolioLink`                  |
 | Change the email, socials, location          | `src/content/pages.js` → `CONTACT`          |
 | Change the tagline or the Contact label      | `src/content/pages.js` → `SITE`             |
+| Turn on Google Analytics                     | `src/content/pages.js` → `ANALYTICS.gaId`   |
 | Swap a photo                                 | drop it in `public/photos/`, set `photo`    |
 | Change colours or fonts of a world           | `src/styles/themes.css` (`.world-dance` …)  |
 | Change how the doors open and move           | `src/styles/index.css` (the `.panel` block) |

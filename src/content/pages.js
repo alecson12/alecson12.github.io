@@ -14,6 +14,11 @@
  *    `portfolioLink` is where the Portfolio button goes. Use the full
  *    address (https://...) of each portfolio site.
  *
+ *  ANALYTICS
+ *    Paste your Google Analytics Measurement ID (G-XXXXXXXXXX) into
+ *    `ANALYTICS.gaId` below. Views and visitors then show up at
+ *    analytics.google.com. Leave it empty and nothing is tracked.
+ *
  *  Everything here was taken from your three portfolio sites. Nothing
  *  was invented; change it as you like.
  * ===================================================================== */
@@ -101,4 +106,9 @@ export const CONTACT = {
     { label: 'Behance', href: 'https://www.behance.net/KozmikKreations' },
     { label: 'GitHub', href: 'https://github.com/alecson12' },
   ],
+}
+
+/** Google Analytics 4 Measurement ID, shared by all four sites. Empty = off. */
+export const ANALYTICS = {
+  gaId: '',
 }

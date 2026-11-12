@@ -3,6 +3,10 @@ import { createRoot } from 'react-dom/client'
 import './styles/index.css'
 import './styles/themes.css'
 import App from './App.jsx'
+import { ANALYTICS } from './content/pages.js'
+import { initAnalytics } from './analytics.js'
+
+initAnalytics(ANALYTICS.gaId)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
