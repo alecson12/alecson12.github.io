@@ -52,7 +52,7 @@ export const ROLES = [
   },
   {
     id: 'design',
-    title: 'Graphic Design',
+    title: 'Graphic Designer',
     eyebrow: 'Kozmik Kreations',
     pitch: 'Kreativity beyond the ordinary.',
     // From the Services slide of Kozmik Kreations
@@ -62,7 +62,7 @@ export const ROLES = [
     hireSubject: 'Project inquiry — Kozmik Kreations',
     // Kozmik has its own inbox; leave blank to use the main email below
     email: 'kozmikkreations.design@gmail.com',
-    portfolioLabel: 'My Kreations',
+    portfolioLabel: 'Design Portfolio',
     portfolioLink: 'https://alecson12.github.io/kozmikkreations-portfolio/',
     photo: '/photos/design.webp',
     photoAlt: 'Alecson Gantica, graphic designer',
