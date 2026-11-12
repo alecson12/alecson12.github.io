@@ -119,7 +119,10 @@ body {
   .chip { white-space: normal; text-align: left; max-width: 100%; }
   .btn  { white-space: nowrap; }
   .world-design .chip { font-size: 9.5px; letter-spacing: .06em; padding: .42rem .6rem; white-space: nowrap; }
-  .panel.is-active.world-unity .more { max-width: 76%; }
+  .panel.is-active.world-unity .more { max-width: 72%; }
+  .world-unity .chip-card { font-size: 10px !important; }
+  /* the Unity photo is square, so it needs to stand taller and further right for the face to clear the tiles */
+  .world-unity .photo { height: 100%; left: 86%; }
   .is-active .actions { flex-wrap: wrap; }
   .more { transition: grid-template-rows .45s var(--ease), opacity .2s ease; }
   .is-active .more { transition: grid-template-rows .55s var(--ease) .1s, opacity .4s ease .25s; }
