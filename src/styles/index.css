@@ -124,13 +124,12 @@ body {
   .more { transition: grid-template-rows .45s var(--ease), opacity .2s ease; }
   .is-active .more { transition: grid-template-rows .55s var(--ease) .1s, opacity .4s ease .25s; }
 
-  /* photo: the portrait stands in the bottom-right corner, fading out towards the
-     top and the left so the details beside it stay readable; only opacity and
-     transform animate */
-  .photo { left: auto; right: -4%; top: auto; bottom: 0; width: 54%; height: 58%; align-items: flex-end; justify-content: flex-end; translate: 0 0; transform: translateY(24px); opacity: 0; z-index: 2;
-           mask-image: linear-gradient(to bottom, transparent 0%, #000 22%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%);
-           transition: opacity .35s ease, transform .5s var(--ease); }
-  .panel .photo img { object-position: bottom right; mask-image: linear-gradient(to right, transparent 0%, #000 46%); -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 46%); }
+  /* photo: a big portrait behind the details. The head sits beside the title,
+     the body fills the right half down to the floor; only opacity and transform animate */
+  .photo { left: 72%; right: auto; top: auto; bottom: 0; width: auto; height: 84%; align-items: flex-end; justify-content: center; translate: -50% 0; transform: translateY(28px); opacity: 0; z-index: 1;
+           mask-image: none; -webkit-mask-image: none; transition: opacity .35s ease, transform .5s var(--ease); }
+  .panel .photo img { max-width: none; object-position: bottom; mask-image: linear-gradient(to right, transparent 0%, #000 22%); -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%); }
+  .is-active .photo { translate: -50% 0; }
   .is-active .photo { opacity: 1; transform: translateY(0); transition: opacity .45s ease .25s, transform .6s var(--ease) .15s; }
 
   .chip    { padding: .45rem .7rem; font-size: 10px; }
